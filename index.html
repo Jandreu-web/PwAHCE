@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="bootstrap.min.css">
+  </head>
+  
+<script data-require="jquery@*" data-semver="2.1.1" src="js/jquery-3.4.1.min.js"></script>
+<script data-require="jqFhir@0.0.5" data-semver="0.0.5" src="js/jqFhir.js"></script>
+<body>
+  
+<div class="container-fluid">  
+<nav class="navbar  navbar-expand-lg navbar-dark bg-primary">
+   <a class="navbar-brand" href="#">
+    <img src="images/portal.png" width="30" height="30" class="d-inline-block align-top" alt="">
+    Personal EHR
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Fhir Server</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Disabled</a>
+      </li>
+    </ul>
+    
+  </div>
+</nav>
+ <hr/>
+
+	
+	<div id="accordion">
+  <div class="card border-primary mb-3" >
+    <div class="card-header" id="headingOne">
+      <h4 class="mb-3">
+		<img onclick="functionactualiza('https://r3.smarthealthit.org/','3b0420d8-8d7d-4add-b20b-2c9bbb9e6962')" src="images/person-2x.png">
+        <button  class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne"><p id="patient_name" class="font-weight-bold">...</p>
+        </button>
+      </h4>
+    </div>
+
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+      <div class="card-body">
+				<table>
+  <tbody>
+    <tr>
+      <td class="align-middle">Gender: </td>
+      <td id="gender" class="align-middle">...</td>
+    </tr>
+	<tr>
+     <tr>
+      <td class="align-middle">BoD: </td>
+      <td id="bod" class="align-middle">...</td>
+    </tr>
+	<tr>
+      <td class="align-middle">Phone: </td>
+      <td id ="phone" class="align-middle">...</td>
+    </tr>
+	<tr>
+      <td class="align-middle">Address: </td>
+      <td id="addr" class="align-middle">...</td>
+    </tr>
+	<tr>
+      <td class="align-middle">PoBx: </td>
+      <td id="pobx" class="align-middle">...</td>
+    </tr>
+	<tr>
+      <td class="align-middle">ID: </td>
+      <td id="idi" class="align-middle">...</td>
+    </tr>
+  </tbody>
+</table>
+	  
+	  
+	  
+       </div>
+    </div>
+  </div>
+	
+	
+	<ul class="list-group">
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    Care Plan
+    <span class="badge badge-primary badge-pill">14</span>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    Encounter
+    <span class="badge badge-primary badge-pill">2</span>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    Medication
+    <span class="badge badge-primary badge-pill">1</span>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    Observation
+    <span class="badge badge-primary badge-pill">1</span>
+  </li>
+</ul>
+	
+	
+	
+	
+	
+	
+	
+	
+<table class="table table-sm">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td colspan="2">Larry the Bird</td>
+      <td>@twitter</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+<form>
+  <div class="form-row align-items-center">
+    <div class="col-sm-3 my-1">
+    <select class="custom-select my-1 mr-sm-2 form-control-sm" id="inlineFormCustomSelectPref">
+    <option selected>Choose...</option>
+    <option value="http://hapi.fhir.org/baseR4/">Hospital Paco</option>
+    <option value="https://stu3.test.pyrohealth.net/fhir/">Hospital Pepe</option>
+    <option value="https://r3.smarthealthit.org/">Hospital Privado</option>
+  </select>
+    </div>
+    <div class="col-sm-3 my-1">
+      <input type="text" class="form-control mb-2 mr-sm-2 form-control-sm" id="inlineFormInputName2" placeholder="3b0420d8-8d7d-4add-b20b-2c9bbb9e6962">
+
+    </div>
+   
+    <div class="col-auto my-1">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </div>
+</form>
+
+
+</div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="jquery-3.2.1.slim.min.js"></script>
+    <script src="popper.min.js"></script>
+    <script src="bootstrap.min.js"></script>
+  </body>
+  
+  <script>
+  
+
+function functionactualiza(base,paciente){
+ 
+ // Set up a client and patient ID to talk to an un-authenticated FHIR server
+ 
+// var client = jqFhir({ baseUrl: 'https://r3.smarthealthit.org/' }),
+//        patientId = '3b0420d8-8d7d-4add-b20b-2c9bbb9e6962';
+
+ var client = jqFhir({ baseUrl: document.getElementById('inlineFormCustomSelectPref').value }),
+      patientId = document.getElementById('inlineFormInputName2').value;
+
+
+
+    client.read({
+      id: 'Patient/' + patientId
+    }).then(function(p) {
+      var name = p.content.name[0];
+      var formatted = name.prefix +" "+ name.given +" "+ name.family;
+	  var bod = p.content.birthDate;
+	  var gender = p.content.gender;
+	  var phone = p.content.telecom[0].value;
+	  var addr = p.content.address[0].line;
+	  var pobx = p.content.address[0].state+" "+p.content.address[0].postalCode;
+	  var idi = p.content.identifier[0].value;
+
+	  var cipa;
+      $("#patient_name").text(formatted);
+	  $("#gender").text(gender);
+	  $("#bod").text(bod);
+	  $("#phone").text(phone);
+	  $("#addr").text(addr);
+	  $("#pobx").text(pobx);
+	  $("#idi").text(idi);
+    });
+}	
+  </script>
+</html>
