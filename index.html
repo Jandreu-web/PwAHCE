@@ -29,22 +29,9 @@
         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Fhir Server</a>
+        <a class="nav-link" href="#">Fhir Client V.0</a>
       </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
-      </li>
+       
     </ul>
     
   </div>
@@ -56,9 +43,10 @@
   <div class="card border-primary mb-3" >
     <div class="card-header" id="headingOne">
       <h4 class="mb-3">
-		<img onclick="functionactualiza('https://r3.smarthealthit.org/','3b0420d8-8d7d-4add-b20b-2c9bbb9e6962')" src="images/person-2x.png">
+		<img onclick="busca()" src="images/person-2x.png">
         <button  class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne"><p id="patient_name" class="font-weight-bold">...</p>
         </button>
+		
       </h4>
     </div>
 
@@ -101,22 +89,22 @@
   </div>
 	
 	
-	<ul class="list-group">
+	<ul class="list-group mb-3">
   <li class="list-group-item d-flex justify-content-between align-items-center">
     Care Plan
-    <span class="badge badge-primary badge-pill">14</span>
+    <span id="careplani" class="badge badge-primary badge-pill">0</span>
   </li>
   <li class="list-group-item d-flex justify-content-between align-items-center">
     Encounter
-    <span class="badge badge-primary badge-pill">2</span>
+    <span id="encounteri" class="badge badge-primary badge-pill">0</span>
   </li>
   <li class="list-group-item d-flex justify-content-between align-items-center">
     Medication
-    <span class="badge badge-primary badge-pill">1</span>
+    <span id="medicationi" class="badge badge-primary badge-pill">0</span>
   </li>
   <li class="list-group-item d-flex justify-content-between align-items-center">
     Observation
-    <span class="badge badge-primary badge-pill">1</span>
+    <span id="observationi" class="badge badge-primary badge-pill">0</span>
   </li>
 </ul>
 	
@@ -127,7 +115,7 @@
 	
 	
 	
-<table class="table table-sm">
+<table class="table table-sm mb-3">
   <thead>
     <tr>
       <th scope="col">#</th>
@@ -159,8 +147,20 @@
 
 
 
+<div id="accordion2">
+  <div class="card border-primary mb-3" >
+    <div class="card-header" id="headingOne">
+      <h4 class="mb-3">
+		<img onclick="functionactualiza()" src="images/cog-2x.png">
+        <button  class="btn btn-link" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseOne"><p id="configuration" class="font-weight-bold">Fhir Server Connection</p>
+        </button>
+		
+      </h4>
+    </div>
 
-<form>
+    <div id="collapseTwo" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion2">
+      <div class="card-body">
+	<form>
   <div class="form-row align-items-center">
     <div class="col-sm-3 my-1">
     <select class="custom-select my-1 mr-sm-2 form-control-sm" id="inlineFormCustomSelectPref">
@@ -175,12 +175,17 @@
 
     </div>
    
-    <div class="col-auto my-1">
+ <!--   <div class="col-auto my-1">
       <button type="submit" class="btn btn-primary">Submit</button>
-    </div>
+    </div> -->
   </div>
 </form>
-
+	  
+	  
+	  
+       </div>
+    </div>
+  </div>
 
 </div>
     <!-- Optional JavaScript -->
@@ -192,8 +197,47 @@
   
   <script>
   
+  
+function busca(){
 
-function functionactualiza(base,paciente){
+	var clientre = jqFhir({ baseUrl: document.getElementById('inlineFormCustomSelectPref').value }),
+      patientId = document.getElementById('inlineFormInputName2').value;
+	  var careplani=0;
+	  var medicationi=0;
+	  var observationi=0;
+	  
+	  clientre.read({
+      id: 'Patient/' + patientId +"/$everything?_count=500"
+    }).then(function(pre) {
+	
+	 pre.content.entry.forEach(function(re) {
+           
+			 var ry=re.resource.code;
+			 var ro=re.resource.valueQuantity;
+              
+			  if (re.resource.resourceType == "CarePlan"){
+			   careplani=careplani+1;
+			    
+			  }
+		
+			   if (re.resource.resourceType == "Medication"){
+			   medicationi=medicationi+1;
+			    
+			  }
+			  
+			   if (re.resource.resourceType == "Observation"){
+			   observationi=observationi+1;
+			   
+			  }
+            });
+	
+	$("#careplani").text(careplani);
+	$("#medicationi").text(medicationi);
+	 $("#observationi").text(observationi);
+	});
+}  
+
+function functionactualiza(){
  
  // Set up a client and patient ID to talk to an un-authenticated FHIR server
  
@@ -202,22 +246,43 @@ function functionactualiza(base,paciente){
 
  var client = jqFhir({ baseUrl: document.getElementById('inlineFormCustomSelectPref').value }),
       patientId = document.getElementById('inlineFormInputName2').value;
+	  
+
 
 
 
     client.read({
       id: 'Patient/' + patientId
     }).then(function(p) {
-      var name = p.content.name[0];
-      var formatted = name.prefix +" "+ name.given +" "+ name.family;
+	
+		if (p.content.name){
+			var name = p.content.name[0];
+		} else name="...";
+	  
+      var formatted = name.given +" "+ name.family;
 	  var bod = p.content.birthDate;
 	  var gender = p.content.gender;
-	  var phone = p.content.telecom[0].value;
-	  var addr = p.content.address[0].line;
-	  var pobx = p.content.address[0].state+" "+p.content.address[0].postalCode;
-	  var idi = p.content.identifier[0].value;
+	   if (p.content.telecom){
+			var phone = p.content.telecom[0].value;
+		}else {phone="..."};
+
+	   if (p.content.address){
+			var addr = p.content.address[0].line;
+			var pobx = p.content.address[0].state+" "+p.content.address[0].postalCode;
+			
+		} else {addr="..."; pobx="..."}; 
+	//  var addr = p.content.address[0].line;
+	//  var pobx = p.content.address[0].state+" "+p.content.address[0].postalCode;
+	
+	 if (p.content.identifier){
+			var idi = p.content.identifier[0].value;
+		} else idi="..."; 
+	//  var idi = p.content.identifier[0].value;
 
 	  var cipa;
+	  
+	  sel=document.getElementById('inlineFormCustomSelectPref');
+	  formatted=formatted+"-"+sel.options[sel.selectedIndex].text
       $("#patient_name").text(formatted);
 	  $("#gender").text(gender);
 	  $("#bod").text(bod);
@@ -225,6 +290,8 @@ function functionactualiza(base,paciente){
 	  $("#addr").text(addr);
 	  $("#pobx").text(pobx);
 	  $("#idi").text(idi);
+	  
+	
     });
 }	
   </script>
