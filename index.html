@@ -39,12 +39,12 @@
 	<div id="accordion">
   <div class="card border-primary mb-3" >
     <div class="card-header" id="headingOne">
-      <h4 class="mb-3">
+      <h5 class="mb-3">
 		<img onclick="busca()" src="images/person-4x.png">
         <button  class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne"><p id="patient_name" class="font-weight-bold">...</p>
         </button>
 		
-      </h4>
+      </h5>
     </div>
 
     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
@@ -85,9 +85,9 @@
     </div>
   </div>
 	
-	
-	<ul class="list-group mb-3">
-  <li class="list-group-item d-flex justify-content-between align-items-center">
+<!--	
+<ul class="list-group mb-3">
+  <li class="list-group-item   d-flex justify-content-between align-items-center">
     Care Plan
     <span id="careplani" class="badge badge-primary badge-pill">0</span>
   </li>
@@ -103,56 +103,915 @@
     Observation
     <span id="observationi" class="badge badge-primary badge-pill">0</span>
   </li>
-</ul>
+</ul> -->
 	
-	
-	
-	
-	
-	
-	
-	
-<table class="table table-sm mb-3">
+
+
+<div class="row">
+  <div class="col">
+    <div class="list-group border border-primary" id="list-tab" role="tablist">
+      <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">Cuidados<span id="careplani" class="badge badge-dark badge-pill">0</span></a>
+      <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Episodios<span id="encounteri" class="badge badge-dark badge-pill">0</span></a>
+      <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">Medicación <span id="medicationi" class="badge badge-dark badge-pill">0</span></a>
+      <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Observaciones  <span id="observationi" class="badge badge-dark badge-pill">0</span></a>
+    </div>
+  </div>
+</div>  
+  <div class="col">
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show " id="list-home" role="tabpanel" aria-labelledby="list-home-list">Cuidados
+	  
+<link href="https://unpkg.com/bootstrap-table@1.15.4/dist/bootstrap-table.min.css" rel="stylesheet">
+<script src="https://unpkg.com/bootstrap-table@1.15.4/dist/bootstrap-table.min.js"></script>
+
+
+<table  id="table"   options="thead-light" data-silent-sort="false"  data-height="150"> 
+
+
   <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
-    </tr>
+      <th data-field="resource.code.coding.0.display" data-sortable="true">Name</th>
+      <th data-field="resource.valueQuantity.value" data-sortable="true">Value</th>
+	  <th data-field="resource.valueQuantity.unit" data-sortable="true">Unit</th>
+     
   </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
 </table>
+<script>
+  var $table = $('#table')
+
+  $(function() {
+    var data = [
+       {
+      "fullUrl": "https://r3.smarthealthit.org/Observation/37d70554-378d-4c21-bb23-1872173ec099",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "37d70554-378d-4c21-bb23-1872173ec099",
+        "meta": {
+          "versionId": "2",
+          "lastUpdated": "2018-04-25T03:26:13.237-04:00",
+          "profile": [
+            "http://standardhealthrecord.org/fhir/StructureDefinition/shr-observation-Observation",
+            "http://standardhealthrecord.org/fhir/StructureDefinition/shr-vital-VitalSign",
+            "http://standardhealthrecord.org/fhir/StructureDefinition/shr-vital-BodyWeight"
+          ],
+          "tag": [
+            {
+              "system": "https://smarthealthit.org/tags",
+              "code": "synthea-7-2017"
+            }
+          ]
+        },
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "29463-7",
+              "display": "Body Weight"
+            }
+          ],
+          "text": "Body Weight"
+        },
+        "subject": {
+          "reference": "Patient/136f5e5a-2b96-43e8-ad5d-07d92e59e48f"
+        },
+        "context": {
+          "reference": "Encounter/f7ebee27-fee3-4017-bb46-bbf49fad1838"
+        },
+        "effectiveDateTime": "2016-10-14T01:49:00-04:00",
+        "issued": "2016-10-14T01:49:00-04:00",
+        "valueQuantity": {
+          "value": 6.8524000309006885,
+          "unit": "kg",
+          "system": "http://unitsofmeasure.org/",
+          "code": "kg"
+        }
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://r3.smarthealthit.org/Observation/d401cc73-f608-4617-9b82-4010ed78efc5",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "d401cc73-f608-4617-9b82-4010ed78efc5",
+        "meta": {
+          "versionId": "2",
+          "lastUpdated": "2018-04-25T03:26:07.143-04:00",
+          "profile": [
+            "http://standardhealthrecord.org/fhir/StructureDefinition/shr-observation-Observation",
+            "http://standardhealthrecord.org/fhir/StructureDefinition/shr-vital-VitalSign",
+            "http://standardhealthrecord.org/fhir/StructureDefinition/shr-vital-BodyHeight"
+          ],
+          "tag": [
+            {
+              "system": "https://smarthealthit.org/tags",
+              "code": "synthea-7-2017"
+            }
+          ]
+        },
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8302-2",
+              "display": "Body Height"
+            }
+          ],
+          "text": "Body Height"
+        },
+        "subject": {
+          "reference": "Patient/136f5e5a-2b96-43e8-ad5d-07d92e59e48f"
+        },
+        "context": {
+          "reference": "Encounter/8f20ab21-7b98-4f68-941e-7bb578788637"
+        },
+        "effectiveDateTime": "2017-04-03T10:07:06-04:00",
+        "issued": "2017-04-03T10:07:06-04:00",
+        "valueQuantity": {
+          "value": 73.34042541339798,
+          "unit": "cm",
+          "system": "http://unitsofmeasure.org/",
+          "code": "cm"
+        }
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://r3.smarthealthit.org/Observation/faf7ac8f-9175-41b3-88ec-6734f9f1a020",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "faf7ac8f-9175-41b3-88ec-6734f9f1a020",
+        "meta": {
+          "versionId": "2",
+          "lastUpdated": "2018-04-25T03:25:56.208-04:00",
+          "profile": [
+            "http://standardhealthrecord.org/fhir/StructureDefinition/shr-observation-Observation",
+            "http://standardhealthrecord.org/fhir/StructureDefinition/shr-vital-BloodPressure"
+          ],
+          "tag": [
+            {
+              "system": "https://smarthealthit.org/tags",
+              "code": "synthea-7-2017"
+            }
+          ]
+        },
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "55284-4",
+              "display": "Blood Pressure"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/136f5e5a-2b96-43e8-ad5d-07d92e59e48f"
+        },
+        "context": {
+          "reference": "Encounter/f7ebee27-fee3-4017-bb46-bbf49fad1838"
+        },
+        "effectiveDateTime": "2016-10-14T01:49:00-04:00",
+        "issued": "2016-10-14T01:49:00-04:00",
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8480-6",
+                  "display": "Systolic Blood Pressure"
+                }
+              ],
+              "text": "Systolic Blood Pressure"
+            },
+            "valueQuantity": {
+              "value": 131,
+              "unit": "mmHg",
+              "system": "http://unitsofmeasure.org/",
+              "code": "mmHg"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8462-4",
+                  "display": "Diastolic Blood Pressure"
+                }
+              ],
+              "text": "Diastolic Blood Pressure"
+            },
+            "valueQuantity": {
+              "value": 83,
+              "unit": "mmHg",
+              "system": "http://unitsofmeasure.org/",
+              "code": "mmHg"
+            }
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://r3.smarthealthit.org/Observation/fbaa5f4b-a7ad-4fbd-9707-ffbe867dee24",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "fbaa5f4b-a7ad-4fbd-9707-ffbe867dee24",
+        "meta": {
+          "versionId": "2",
+          "lastUpdated": "2018-04-25T03:24:36.233-04:00",
+          "profile": [
+            "http://standardhealthrecord.org/fhir/StructureDefinition/shr-observation-Observation",
+            "http://standardhealthrecord.org/fhir/StructureDefinition/shr-vital-BloodPressure"
+          ],
+          "tag": [
+            {
+              "system": "https://smarthealthit.org/tags",
+              "code": "synthea-7-2017"
+            }
+          ]
+        },
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "55284-4",
+              "display": "Blood Pressure"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/136f5e5a-2b96-43e8-ad5d-07d92e59e48f"
+        },
+        "context": {
+          "reference": "Encounter/3bb74c85-6052-40a9-85dc-9dd525f599ab"
+        },
+        "effectiveDateTime": "2016-08-14T05:07:43-04:00",
+        "issued": "2016-08-14T05:07:43-04:00",
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8480-6",
+                  "display": "Systolic Blood Pressure"
+                }
+              ],
+              "text": "Systolic Blood Pressure"
+            },
+            "valueQuantity": {
+              "value": 135,
+              "unit": "mmHg",
+              "system": "http://unitsofmeasure.org/",
+              "code": "mmHg"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8462-4",
+                  "display": "Diastolic Blood Pressure"
+                }
+              ],
+              "text": "Diastolic Blood Pressure"
+            },
+            "valueQuantity": {
+              "value": 85,
+              "unit": "mmHg",
+              "system": "http://unitsofmeasure.org/",
+              "code": "mmHg"
+            }
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://r3.smarthealthit.org/Observation/66b4b397-ad3e-4e7b-8ba5-553a7f48cedd",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "66b4b397-ad3e-4e7b-8ba5-553a7f48cedd",
+        "meta": {
+          "versionId": "2",
+          "lastUpdated": "2018-04-25T03:22:42.542-04:00",
+          "profile": [
+            "http://standardhealthrecord.org/fhir/StructureDefinition/shr-observation-Observation",
+            "http://standardhealthrecord.org/fhir/StructureDefinition/shr-vital-BloodPressure"
+          ],
+          "tag": [
+            {
+              "system": "https://smarthealthit.org/tags",
+              "code": "synthea-7-2017"
+            }
+          ]
+        },
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "55284-4",
+              "display": "Blood Pressure"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/136f5e5a-2b96-43e8-ad5d-07d92e59e48f"
+        },
+        "context": {
+          "reference": "Encounter/99ac677d-b174-4611-9167-3f2690a223ce"
+        },
+        "effectiveDateTime": "2017-07-08T04:43:55-04:00",
+        "issued": "2017-07-08T04:43:55-04:00",
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8480-6",
+                  "display": "Systolic Blood Pressure"
+                }
+              ],
+              "text": "Systolic Blood Pressure"
+            },
+            "valueQuantity": {
+              "value": 113,
+              "unit": "mmHg",
+              "system": "http://unitsofmeasure.org/",
+              "code": "mmHg"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8462-4",
+                  "display": "Diastolic Blood Pressure"
+                }
+              ],
+              "text": "Diastolic Blood Pressure"
+            },
+            "valueQuantity": {
+              "value": 86,
+              "unit": "mmHg",
+              "system": "http://unitsofmeasure.org/",
+              "code": "mmHg"
+            }
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://r3.smarthealthit.org/Observation/fecfad0c-b030-4948-bd8c-dff5fe5bbcb5",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "fecfad0c-b030-4948-bd8c-dff5fe5bbcb5",
+        "meta": {
+          "versionId": "2",
+          "lastUpdated": "2018-04-25T03:22:20.646-04:00",
+          "profile": [
+            "http://standardhealthrecord.org/fhir/StructureDefinition/shr-observation-Observation",
+            "http://standardhealthrecord.org/fhir/StructureDefinition/shr-vital-VitalSign",
+            "http://standardhealthrecord.org/fhir/StructureDefinition/shr-vital-BodyHeight"
+          ],
+          "tag": [
+            {
+              "system": "https://smarthealthit.org/tags",
+              "code": "synthea-7-2017"
+            }
+          ]
+        },
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8302-2",
+              "display": "Body Height"
+            }
+          ],
+          "text": "Body Height"
+        },
+        "subject": {
+          "reference": "Patient/136f5e5a-2b96-43e8-ad5d-07d92e59e48f"
+        },
+        "context": {
+          "reference": "Encounter/99ac677d-b174-4611-9167-3f2690a223ce"
+        },
+        "effectiveDateTime": "2017-07-08T04:43:55-04:00",
+        "issued": "2017-07-08T04:43:55-04:00",
+        "valueQuantity": {
+          "value": 76.92002341432828,
+          "unit": "cm",
+          "system": "http://unitsofmeasure.org/",
+          "code": "cm"
+        }
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://r3.smarthealthit.org/Observation/b93cdf3d-cc89-44d4-8a95-d95ebf9645a5",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "b93cdf3d-cc89-44d4-8a95-d95ebf9645a5",
+        "meta": {
+          "versionId": "2",
+          "lastUpdated": "2018-04-25T03:21:02.622-04:00",
+          "profile": [
+            "http://standardhealthrecord.org/fhir/StructureDefinition/shr-observation-Observation",
+            "http://standardhealthrecord.org/fhir/StructureDefinition/shr-vital-BloodPressure"
+          ],
+          "tag": [
+            {
+              "system": "https://smarthealthit.org/tags",
+              "code": "synthea-7-2017"
+            }
+          ]
+        },
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "55284-4",
+              "display": "Blood Pressure"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/136f5e5a-2b96-43e8-ad5d-07d92e59e48f"
+        },
+        "context": {
+          "reference": "Encounter/8f20ab21-7b98-4f68-941e-7bb578788637"
+        },
+        "effectiveDateTime": "2017-04-03T10:07:06-04:00",
+        "issued": "2017-04-03T10:07:06-04:00",
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8480-6",
+                  "display": "Systolic Blood Pressureeeeeeeeeeeeeee"
+                }
+              ],
+              "text": "Systolic Blood Pressure"
+            },
+            "valueQuantity": {
+              "value": 125,
+              "unit": "mmHg",
+              "system": "http://unitsofmeasure.org/",
+              "code": "mmHg"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8462-4",
+                  "display": "Diastolic Blood Pressureeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+                }
+              ],
+              "text": "Diastolic Blood Pressure"
+            },
+            "valueQuantity": {
+              "value": 71,
+              "unit": "mmHg",
+              "system": "http://unitsofmeasure.org/",
+              "code": "mmHg"
+            }
+          }
+        ]
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://r3.smarthealthit.org/Procedure/RES149874",
+      "resource": {
+        "resourceType": "Procedure",
+        "id": "RES149874",
+        "meta": {
+          "versionId": "2",
+          "lastUpdated": "2018-04-25T03:20:15.565-04:00",
+          "profile": [
+            "http://standardhealthrecord.org/fhir/StructureDefinition/shr-procedure-Procedure"
+          ],
+          "tag": [
+            {
+              "system": "https://smarthealthit.org/tags",
+              "code": "synthea-7-2017"
+            }
+          ]
+        },
+        "extension": [
+          {
+            "url": "http://standardhealthrecord.org/fhir/StructureDefinition/shr-core-CodeableConcept-extension",
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "428191000124101",
+                  "display": "Documentation of current medications"
+                }
+              ],
+              "text": "Documentation of current medications"
+            }
+          }
+        ],
+        "status": "completed",
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "428191000124101",
+              "display": "Documentation of current medications"
+            }
+          ],
+          "text": "Documentation of current medications"
+        },
+        "subject": {
+          "reference": "Patient/136f5e5a-2b96-43e8-ad5d-07d92e59e48f"
+        },
+        "context": {
+          "reference": "Encounter/99ac677d-b174-4611-9167-3f2690a223ce"
+        },
+        "performedDateTime": "2017-07-08T04:43:55-04:00"
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://r3.smarthealthit.org/Observation/1b7fe69a-ddb3-4bb3-9cb8-51023543fc21",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "1b7fe69a-ddb3-4bb3-9cb8-51023543fc21",
+        "meta": {
+          "versionId": "2",
+          "lastUpdated": "2018-04-25T03:19:57.913-04:00",
+          "profile": [
+            "http://standardhealthrecord.org/fhir/StructureDefinition/shr-observation-Observation",
+            "http://standardhealthrecord.org/fhir/StructureDefinition/shr-vital-VitalSign",
+            "http://standardhealthrecord.org/fhir/StructureDefinition/shr-vital-BodyHeight"
+          ],
+          "tag": [
+            {
+              "system": "https://smarthealthit.org/tags",
+              "code": "synthea-7-2017"
+            }
+          ]
+        },
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8302-2",
+              "display": "Body Height"
+            }
+          ],
+          "text": "Body Height"
+        },
+        "subject": {
+          "reference": "Patient/136f5e5a-2b96-43e8-ad5d-07d92e59e48f"
+        },
+        "context": {
+          "reference": "Encounter/3bb74c85-6052-40a9-85dc-9dd525f599ab"
+        },
+        "effectiveDateTime": "2016-08-14T05:07:43-04:00",
+        "issued": "2016-08-14T05:07:43-04:00",
+        "valueQuantity": {
+          "value": 59.32285061233532,
+          "unit": "cm",
+          "system": "http://unitsofmeasure.org/",
+          "code": "cm"
+        }
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://r3.smarthealthit.org/Observation/f3b64316-96a3-4c35-a18c-e00227c95981",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "f3b64316-96a3-4c35-a18c-e00227c95981",
+        "meta": {
+          "versionId": "2",
+          "lastUpdated": "2018-04-25T03:19:48.986-04:00",
+          "profile": [
+            "http://standardhealthrecord.org/fhir/StructureDefinition/shr-observation-Observation",
+            "http://standardhealthrecord.org/fhir/StructureDefinition/shr-vital-VitalSign",
+            "http://standardhealthrecord.org/fhir/StructureDefinition/shr-vital-BodyHeight"
+          ],
+          "tag": [
+            {
+              "system": "https://smarthealthit.org/tags",
+              "code": "synthea-7-2017"
+            }
+          ]
+        },
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8302-2",
+              "display": "Body Height"
+            }
+          ],
+          "text": "Body Height"
+        },
+        "subject": {
+          "reference": "Patient/136f5e5a-2b96-43e8-ad5d-07d92e59e48f"
+        },
+        "context": {
+          "reference": "Encounter/6abc36bc-39c2-4dd4-a7a1-eed0c0628004"
+        },
+        "effectiveDateTime": "2016-07-10T01:52:55-04:00",
+        "issued": "2016-07-10T01:52:55-04:00",
+        "valueQuantity": {
+          "value": 56.34122115358351,
+          "unit": "cm",
+          "system": "http://unitsofmeasure.org/",
+          "code": "cm"
+        }
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://r3.smarthealthit.org/Observation/03c14062-ba96-45a1-9f86-903fba45c8a2",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "03c14062-ba96-45a1-9f86-903fba45c8a2",
+        "meta": {
+          "versionId": "2",
+          "lastUpdated": "2018-04-25T03:18:09.984-04:00",
+          "profile": [
+            "http://standardhealthrecord.org/fhir/StructureDefinition/shr-observation-Observation",
+            "http://standardhealthrecord.org/fhir/StructureDefinition/shr-vital-VitalSign",
+            "http://standardhealthrecord.org/fhir/StructureDefinition/shr-vital-BodyWeight"
+          ],
+          "tag": [
+            {
+              "system": "https://smarthealthit.org/tags",
+              "code": "synthea-7-2017"
+            }
+          ]
+        },
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "29463-7",
+              "display": "Body Weight"
+            }
+          ],
+          "text": "Body Weight"
+        },
+        "subject": {
+          "reference": "Patient/136f5e5a-2b96-43e8-ad5d-07d92e59e48f"
+        },
+        "context": {
+          "reference": "Encounter/3bb74c85-6052-40a9-85dc-9dd525f599ab"
+        },
+        "effectiveDateTime": "2016-08-14T05:07:43-04:00",
+        "issued": "2016-08-14T05:07:43-04:00",
+        "valueQuantity": {
+          "value": 5.508379930112238,
+          "unit": "kg",
+          "system": "http://unitsofmeasure.org/",
+          "code": "kg"
+        }
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "https://r3.smarthealthit.org/Observation/b763e1f4-1509-47e4-85ae-e5b79a659b82",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "b763e1f4-1509-47e4-85ae-e5b79a659b82",
+        "meta": {
+          "versionId": "2",
+          "lastUpdated": "2018-04-25T03:15:08.867-04:00",
+          "profile": [
+            "http://standardhealthrecord.org/fhir/StructureDefinition/shr-observation-Observation",
+            "http://standardhealthrecord.org/fhir/StructureDefinition/shr-vital-VitalSign",
+            "http://standardhealthrecord.org/fhir/StructureDefinition/shr-vital-BodyWeight"
+          ],
+          "tag": [
+            {
+              "system": "https://smarthealthit.org/tags",
+              "code": "synthea-7-2017"
+            }
+          ]
+        },
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "29463-7",
+              "display": "Body Weight"
+            }
+          ],
+          "text": "Body Weight"
+        },
+        "subject": {
+          "reference": "Patient/136f5e5a-2b96-43e8-ad5d-07d92e59e48f"
+        },
+        "context": {
+          "reference": "Encounter/6abc36bc-39c2-4dd4-a7a1-eed0c0628004"
+        },
+        "effectiveDateTime": "2016-07-10T01:52:55-04:00",
+        "issued": "2016-07-10T01:52:55-04:00",
+        "valueQuantity": {
+          "value": 4.729777169199243,
+          "unit": "kg",
+          "system": "http://unitsofmeasure.org/",
+          "code": "kg"
+        }
+      },
+      "search": {
+        "mode": "match"
+      }
+    }
+    ]
+    $table.bootstrapTable({data: data})
+  })
+</script>
+
+	  
+	  
+	  </div>
+      <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">Episodios</div>
+      <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">Medicación</div>
+      <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">Observaciones</div>
+    </div>
+  </div>
 
 
+	
+	
+	  
+	  
+	  
+	
+
+	
+
+<hr/>
 
 <div id="accordion2">
   <div class="card border-primary mb-3" >
     <div class="card-header" id="headingOne">
-      <h4 class="mb-3">
-		<img onclick="functionactualiza()" src="images/cog-2x.png">
+      <h5 class="mb-3">
+		<img onclick="functionactualiza()" src="images/cog-4x.png">
         <button  class="btn btn-link" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseOne"><p id="configuration" class="font-weight-bold">Fhir Server Connection</p>
         </button>
 		
-      </h4>
+      </h5>
     </div>
 
     <div id="collapseTwo" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion2">
@@ -183,6 +1042,12 @@
        </div>
     </div>
   </div>
+
+
+
+
+
+
 
 </div>
     <!-- Optional JavaScript -->
