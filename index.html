@@ -266,13 +266,26 @@ function busca(){
 			  // console.log(indiceobs);
 					if (datobs[indiceobs].resource.valueQuantity){
 					valor=JSON.stringify(datobs[indiceobs].resource.valueQuantity.value);
-					
-					 datobs[indiceobs].resource.valueQuantity.value= valor.substring(0,6)+" "+datobs[indiceobs].resource.valueQuantity.unit
+					datobs[indiceobs].resource.valueQuantity.value= valor.substring(0,6)+" "+datobs[indiceobs].resource.valueQuantity.unit
 					}
 					
+					if (datobs[indiceobs].resource.component){
 					
-					fecha=JSON.stringify(datobs[indiceobs].resource.effectiveDateTime);
-					datobs[indiceobs].resource.effectiveDateTime=fecha.substring(1,11);
+					
+					
+					texto=JSON.stringify(datobs[indiceobs].resource.component[0].code.text).substring(0,10);
+					texto=texto+" "+JSON.stringify(datobs[indiceobs].resource.component[0].valueQuantity.value)+JSON.stringify(datobs[indiceobs].resource.component[0].valueQuantity.unit);
+					texto=texto+" "+JSON.stringify(datobs[indiceobs].resource.component[1].code.text).substring(0,10);
+					texto=texto+" "+JSON.stringify(datobs[indiceobs].resource.component[1].valueQuantity.value)+JSON.stringify(datobs[indiceobs].resource.component[1].valueQuantity.unit);
+					datobs[indiceobs].resource.valueQuantity= [{ "value": ""}];
+					datobs[indiceobs].resource.valueQuantity.value=texto;
+					//datobs[indiceobs].resource.component.code[0].coding.display;
+					//+" "+datobs[indiceobs].resource.component.valueQuantity[0].value;
+					
+					}
+				
+				fecha=JSON.stringify(datobs[indiceobs].resource.effectiveDateTime);
+				datobs[indiceobs].resource.effectiveDateTime=fecha.substring(1,11);
 				indiceobs=indiceobs+1;	
 			  }
 			   
