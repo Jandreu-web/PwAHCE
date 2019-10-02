@@ -156,9 +156,9 @@
 	  
 	  
 	  </div>
-      <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">Episodios</div>
-      <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">Medicación</div>
-      <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">Observaciones</div>
+      <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">...</div>
+      <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">...</div>
+      <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">...</div>
     </div>
   </div>
 
@@ -175,7 +175,7 @@
 <hr/>
 
 <div id="accordion2">
-  <div class="card border-primary mb-3" >
+  <div class="card border-primary sm-3" >
     <div class="card-header" id="headingOne">
       <h5 class="mb-3">
 		<img onclick="functionactualiza()" src="images/cog-4x.png">
@@ -187,28 +187,23 @@
 
     <div id="collapseTwo" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion2">
       <div class="card-body">
+	
+	  
 	<form>
-  <div class="form-row align-items-center">
-    <div class="col-sm-3 my-1">
-    <select class="custom-select my-1 mr-sm-2 form-control-sm" id="inlineFormCustomSelectPref">
+  <div class="row">
+    <div class="col">
+     <select class="custom-select my-1 mr-sm-2 form-control-sm" id="inlineFormCustomSelectPref">
     <option selected>Choose...</option>
     <option value="http://hapi.fhir.org/baseR4/">Hospital Paco</option>
     <option value="https://stu3.test.pyrohealth.net/fhir/">Hospital Pepe</option>
     <option value="https://r3.smarthealthit.org/">Hospital Privado</option>
-  </select>
     </div>
-    <div class="col-sm-3 my-1">
-      <input type="text" class="form-control mb-2 mr-sm-2 form-control-sm" id="inlineFormInputName2" placeholder="3b0420d8-8d7d-4add-b20b-2c9bbb9e6962">
-
+    <div class="col">
+       <input type="text" class="form-control mb-2 mr-sm-2 form-control-sm" id="inlineFormInputName2" placeholder="3b0420d8-8d7d-4add-b20b-2c9bbb9e6962">
     </div>
-   
- <!--   <div class="col-auto my-1">
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </div> -->
   </div>
 </form>
-	  
-	  
+  
 	  
        </div>
     </div>
