@@ -199,7 +199,7 @@
     <option value="https://r3.smarthealthit.org/">Hospital Privado</option>
     </div>
     <div class="col">
-       <input type="text" class="form-control mb-2 mr-sm-2 form-control-sm" id="inlineFormInputName2" placeholder="3b0420d8-8d7d-4add-b20b-2c9bbb9e6962">
+       <input type="text" class="form-control mb-2 mr-sm-2 form-control-sm" id="inlineFormInputName2" placeholder="3b0420d8-8d7d-4add-b20b-2c9bbb9e6962" value="3b0420d8-8d7d-4add-b20b-2c9bbb9e6962">
     </div>
   </div>
 </form>
@@ -225,8 +225,10 @@
   
   <script>
   
-  var datobs= [];
+
 function busca(){
+  var datobs= [];
+//	 $table.bootstrapTable({data: datobs});
 
 	var clientre = jqFhir({ baseUrl: document.getElementById('inlineFormCustomSelectPref').value }),
       patientId = document.getElementById('inlineFormInputName2').value;
@@ -290,6 +292,7 @@ function busca(){
 	$("#medicationi").text(medicationi);
 	 $("#observationi").text(observationi);
 	 $table.bootstrapTable({data: datobs});
+	
 	});
 }  
 
