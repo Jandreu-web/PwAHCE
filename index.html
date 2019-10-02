@@ -118,26 +118,29 @@
   </div>
 </div>  
   <div class="col">
-    <div class="tab-content" id="nav-tabContent">
-      <div class="tab-pane fade show " id="list-home" role="tabpanel" aria-labelledby="list-home-list">Cuidados
+    <div class="tab-content border-primary" id="nav-tabContent">
+      <div class="tab-pane fade show " id="list-home" role="tabpanel" aria-labelledby="list-home-list">
 	  
 <link href="https://unpkg.com/bootstrap-table@1.15.4/dist/bootstrap-table.min.css" rel="stylesheet">
 <script src="https://unpkg.com/bootstrap-table@1.15.4/dist/bootstrap-table.min.js"></script>
 
+<hr/>
+
 <div class="table-responsive-sm">
 <table  class="table-sm table-striped table-hover mx-auto w-auto" id="table"   options="thead-light" data-silent-sort="false"> 
-
+ 
 <!--data-height="150" -->
 
   <thead>
     <tr>
-      <th data-field="resource.code.coding.0.display" data-sortable="true">Name</th>
-      <th data-field="resource.valueQuantity.value" data-sortable="true">Value</th>
-	  <th data-field="resource.valueQuantity.unit" data-sortable="true">Unit</th>
-     
+      <th data-field="resource.code.coding.0.display" data-sortable="true">Nombre</th>
+      <th data-field="resource.valueQuantity.value" data-sortable="true">Valor</th>
+	  <th data-field="resource.effectiveDateTime" data-sortable="true">Fecha</th>
+     </tr>
   </thead>
 </table>
 </div>
+
 <script>
   var $table = $('#table')
 
@@ -234,7 +237,7 @@ function busca(){
 	  var careplani=0;
 	  var medicationi=0;
 	  var observationi=0;
-	  
+	  var indiceobs=0;
 	  clientre.read({
       id: 'Patient/' + patientId +"/$everything?_count=500"
     }).then(function(pre) {
@@ -243,6 +246,7 @@ function busca(){
            
 			 var ry=re.resource.code;
 			 var ro=re.resource.valueQuantity;
+		
               
 			  if (re.resource.resourceType == "CarePlan"){
 			   careplani=careplani+1;
@@ -257,7 +261,15 @@ function busca(){
 			   if (re.resource.resourceType == "Observation"){
 			   observationi=observationi+1;
 			   datobs.push(re);
+			   
+			  // console.log(indiceobs);
+					if (datobs[indiceobs].resource.valueQuantity){
+					 datobs[indiceobs].resource.valueQuantity.value=datobs[indiceobs].resource.valueQuantity.value+" "+datobs[indiceobs].resource.valueQuantity.unit
+					
+					}
+				indiceobs=indiceobs+1;	
 			  }
+			   
             });
 	
 	$("#careplani").text(careplani);
