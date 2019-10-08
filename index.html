@@ -18,7 +18,7 @@
 <script data-require="jquery@*" data-semver="2.1.1" src="js/jquery-3.4.1.min.js"></script>
 <script data-require="jqFhir@0.0.5" data-semver="0.0.5" src="js/jqFhir.js"></script>
 
-
+ <script src="js/Chart.Bundle.js"></script>
 
   
 
@@ -183,7 +183,200 @@ options="thead-light" data-id-field="resource.code.coding.0.display" data-silent
       <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list"><hr/>
 <h6 class="mb-3"><p id="patient_name"><img onclick="busca()" src="images/document-4x.png">&nbsp;&nbsp;&nbsp;Cuidados</p></h6></div>
 	  <div class="tab-pane fade" id="list-chart" role="tabpanel" aria-labelledby="list-chart-list"><hr/>
-<h6 class="mb-3"><p id="patient_name"><img onclick="busca()" src="images/graph-4x.png">&nbsp;&nbsp;&nbsp;Gráficos</p></h6></div>
+<h6 class="mb-3"><p id="patient_name"><img onclick="busca()" src="images/graph-4x.png">&nbsp;&nbsp;&nbsp;Gráficos</p></h6>
+
+
+			<div class="border border-primary" style="height: 450px; overflow-y: scroll;">
+
+			
+			
+				<div class="row">
+					<div class="col-sm">
+				<div class="col-15"><canvas id="myChart"></canvas></div>
+					</div>
+				</div>	
+				<div class="row">
+					<div class="col-sm">
+						<div class="col-2"><canvas id="chart-1"></canvas></div>
+					</div>
+						<div class="col-sm">
+				<div class="col-2"><canvas id="chart-2"></canvas></div>
+					</div>
+				</div>
+
+			
+			
+			
+			
+			<script>
+			var ctx = document.getElementById('myChart').getContext('2d');
+var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'line',
+
+    // The data for our dataset
+    data: {
+       labels:  [1, 2, 3],
+        datasets: [{
+            label: 'Creatinina',
+           // backgroundColor: 'rgb(255, 99, 132)',
+			fill: false,
+            borderColor: 'rgb(006,057,113)',
+            data: [5,5,-5]
+			
+	
+        },
+		{
+            label: 'Min',
+            //backgroundColor: 'rgb(255, 255, 000)',
+			fill: false,
+            borderColor: 'rgb(255, 255, 000)',
+            data: [-2,-2,-2]
+			
+	
+        },
+		{
+            label: 'Max',
+            //backgroundColor: 'rgb(255, 255, 000)',
+			fill: false,
+            borderColor: 'rgb(255, 255, 000)',
+            data: [5,5,5]
+			
+	
+        }
+		
+		]
+    },
+
+    // Configuration options go here
+    options: {
+					tooltips: {
+					mode: 'index',
+					intersect: false,
+				},
+				hover: {
+					mode: 'nearest',
+					intersect: true
+				},
+
+					legend: {
+						position: 'right',
+						labels: {
+							usePointStyle: true
+						}
+
+					},
+					scales: {
+					xAxes: [{
+						display: true,
+					
+						scaleLabel: {
+							display: true,
+							//labelString: 'Month'
+						}
+					}],
+
+					yAxes: [{
+						display: true,
+					
+						scaleLabel: {
+							display: true,
+							//labelString: 'Value'
+						},
+
+						ticks: {
+							suggestedMin: 20,
+							suggestedMax: -20,
+							stepSize: 2
+						}
+					}]}
+
+}
+});
+
+
+//window.onload = function(){graf1.style.display ='none'; }
+
+// recupero datos en array de array.
+
+var array2=[[20190714,1.7,-1,5],[20190722,2,-1,5],[20190716,3,-1,2],[20190716,4,-2,2],[20170716,5,-2,2],[20190722,2,-1,5],[20190722,2,-1,5],[20150722,2,-1,5],[20190722,2,-1,5],[20190714,1.7,-1,5],[20190722,2,-1,5],[20190716,3,-1,2],[20190716,4,-2,2],[20170716,5,-2,2],[20190722,2,-1,5],[20190722,2,-1,5],[20150722,2,-1,5],[20190722,2,-1,5],[20190714,1.7,-1,5],[20190722,2,-1,5],[20190716,3,-1,2],[20190716,4,-2,2],[20170716,5,-2,2],[20190722,2,-1,5],[20190722,2,-1,5],[20150722,2,-1,5],[20190722,2,-1,5],[20190714,1.7,-1,5],[20190722,2,-1,5],[20190716,3,-1,2],[20190716,4,-2,2],[20170716,5,-2,2],[20190722,2,-1,5],[20190722,2,-1,5],[20150722,2,-1,5],[20190722,2,-1,5],[20190714,1.7,-1,5],[20190722,2,-1,5],[20190716,3,-1,2],[20190716,4,-2,2],[20170716,5,-2,2],[20190722,2,-1,5],[20190722,2,-1,5],[20150722,2,-1,5],[20190722,2,-1,5],[20190714,1.7,-1,5],[20190722,2,-1,5],[20190716,3,-1,2],[20190716,4,-2,2],[20170716,5,-2,2],[20190722,2,-1,5],[20190722,2,-1,5],[20150722,2,-1,5],[20190722,2,-1,5],[20190714,1.7,-1,5],[20190722,2,-1,5],[20190716,3,-1,2],[20190716,4,-2,2],[20170716,5,-2,2],[20190722,2,-1,5],[20190722,2,-1,5],[20150722,2,-1,5],[20190722,2,-1,5],[20190714,1.7,-1,5],[20190722,2,-1,5],[20190716,3,-1,2],[20190716,4,-2,2],[20170716,5,-2,2],[20190722,2,-1,5],[20190722,2,-1,5],[20150722,2,-1,5],[20190722,2,-1,5],[20190714,1.7,-1,5],[20190722,2,-1,5],[20190716,3,-1,2],[20190716,4,-2,2],[20170716,5,-2,2],[20190722,2,-1,5],[20190722,2,-1,5],[20150722,2,-1,5],[20190722,2,-1,5],[20190714,1.7,-1,5],[20190722,2,-1,5],[20190716,3,-1,2],[20190716,4,-2,2],[20170716,5,-2,2],[20190722,2,-1,5],[20190722,2,-1,5],[20150722,2,-1,5],[20190722,2,-1,5]];
+
+	
+var sortedArray = array2.sort(function(b,a) {
+  if (a[0] == b[0]) {
+    return a[1] - b[1];
+  }
+  return b[0] - a[0];
+});
+
+
+ 		
+datos =[];
+min =[];
+max =[];
+etiqueta=[];
+for(i=0;i<sortedArray.length;i++){
+datos.push(sortedArray[i][1]);
+etiqueta.push(sortedArray[i][0]);
+min.push(sortedArray[i][2]);
+max.push(sortedArray[i][3]);
+}
+//datos.push(sortedArray[1][1]);
+//datos.push(sortedArray[2][1]);
+//datos.push(sortedArray[3][1]);
+//datos.push(sortedArray[4][1]);
+
+//etiqueta.push(sortedArray[0][0]);
+//etiqueta.push(sortedArray[1][0]);
+//etiqueta.push(sortedArray[2][0]);
+//etiqueta.push(sortedArray[3][0]);
+//etiqueta.push(sortedArray[4][0]);
+
+//min.push(sortedArray[0][2]);
+//min.push(sortedArray[1][2]);
+//min.push(sortedArray[2][2]);
+//min.push(sortedArray[3][2]);
+//min.push(sortedArray[4][2]);
+
+//min.push(5);
+//min.push(5);
+//min.push(5);
+//max.push(30);
+//max.push(30);
+//max.push(30);
+chart.data.labels=etiqueta;
+chart.data.datasets[0].data = datos;
+//chart.data.datasets[0].label = "NUEVOOOOOO";
+chart.data.datasets[1].data = min;
+chart.data.datasets[2].data = max;
+//chart.data.datasets[2].data[2] = datos;
+//chart.data.labels.push(label);
+//    chart.data.datasets.forEach((dataset) => {
+//        dataset.data.push(data);
+//    });
+chart.update();
+chart.update();
+chart.update();
+		
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</script>
+			
+			</div>
+
+
+
+</div>
+
+
 
     </div>
 
@@ -252,10 +445,8 @@ options="thead-light" data-id-field="resource.code.coding.0.display" data-silent
 	<!--<script src="js/jquery.dataTables.min.js"></script> -->
 	<!-- <script src="js/dataTables.rowGroup.min.js"></script> -->
     <script src="popper.min.js"></script>
-   
-
-	 <script src="bootstrap.min.js"></script>
-
+    <script src="bootstrap.min.js"></script>
+    <script src="js/Chart.Bundle.js"></script>
 
 
 
