@@ -186,13 +186,13 @@ options="thead-light" data-id-field="resource.code.coding.0.display" data-silent
 <h6 class="mb-3"><p id="patient_name"><img onclick="busca()" src="images/graph-4x.png">&nbsp;&nbsp;&nbsp;Gráficos</p></h6>
 
 
-			<div class="border border-primary" style="height: 450px; overflow-y: scroll;">
+			<div class="border border-primary" style="height: 450px;">
 
 			
 			
 				<div class="row">
 					<div class="col-sm">
-				<div class="col-15"><canvas id="myChart"></canvas></div>
+				<div class="col-15"><canvas id="myChart" width="900" height="300"></canvas></div>
 					</div>
 				</div>	
 				<div class="row">
@@ -260,7 +260,7 @@ var chart = new Chart(ctx, {
 				},
 
 					legend: {
-						position: 'right',
+						position: 'top',
 						labels: {
 							usePointStyle: true
 						}
