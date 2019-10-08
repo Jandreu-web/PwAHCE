@@ -197,7 +197,11 @@ options="thead-light" data-id-field="resource.code.coding.0.display" data-silent
 				</div>	
 				<div class="row">
 					<div class="col-sm">
-						<div class="col-2"><canvas id="chart-1"></canvas></div>
+						<div class="col-2"> <div class="btn-group btn-group-sm">
+    <button type="button" id="OrdenarA" class="btn btn-primary">Ascendente</button>
+    <button type="button" id="OrdenarD" class="btn btn-primary">Descendente</button>
+    <button type="button" id="removeDataset"class="btn btn-primary">Borrar</button>
+  </div></div>
 					</div>
 						<div class="col-sm">
 				<div class="col-2"><canvas id="chart-2"></canvas></div>
@@ -359,9 +363,59 @@ chart.update();
 chart.update();
 		
 			
+document.getElementById('OrdenarA').addEventListener('click', function() {
+
+     var   sortedArray = array2.sort(function(b,a) {
+		if (a[0] == b[0]) {
+			return a[1] - b[1];
+			}
+			return b[0] - a[0];
+		});
+		datos =[];
+		min =[];
+		max =[];
+		etiqueta=[];
+		for(i=0;i<sortedArray.length;i++){
+		datos.push(sortedArray[i][1]);
+		etiqueta.push(sortedArray[i][0]);
+		min.push(sortedArray[i][2]);
+		max.push(sortedArray[i][3]);
+		};
+		chart.data.labels=etiqueta;
+		chart.data.datasets[0].data = datos;
+		chart.data.datasets[1].data = min;
+		chart.data.datasets[2].data = max;
+		chart.update();
+});
+document.getElementById('OrdenarD').addEventListener('click', function() {
+
+    var  sortedArray = array2.sort(function(a,b) {
+		if (a[0] == b[0]) {
+			return a[1] - b[1];
+			}
+			return b[0] - a[0];
+		});
+		datos =[];
+		min =[];
+		max =[];
+		etiqueta=[];
+		for(i=0;i<sortedArray.length;i++){
+		datos.push(sortedArray[i][1]);
+		etiqueta.push(sortedArray[i][0]);
+		min.push(sortedArray[i][2]);
+		max.push(sortedArray[i][3]);
+		};
+		chart.data.labels=etiqueta;
+		chart.data.datasets[0].data = datos;
+		chart.data.datasets[1].data = min;
+		chart.data.datasets[2].data = max;
+		chart.update();
+});			
 			
-			
-			
+	document.getElementById('removeDataset').addEventListener('click', function() {
+			chart.data.datasets.pop();
+			chart.update();
+		});		
 			
 			
 			
