@@ -183,7 +183,19 @@ options="thead-light" data-id-field="resource.code.coding.0.display" data-silent
       <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list"><hr/>
 <h6 class="mb-3"><p id="patient_name"><img onclick="busca()" src="images/document-4x.png">&nbsp;&nbsp;&nbsp;Cuidados</p></h6></div>
 	  <div class="tab-pane fade" id="list-chart" role="tabpanel" aria-labelledby="list-chart-list"><hr/>
-<h6 class="mb-3"><p id="patient_name"><img onclick="busca()" src="images/graph-4x.png">&nbsp;&nbsp;&nbsp;Gráficos</p></h6>
+<h6 class="mb-3"><p id="patient_name"><img onclick="busca()" src="images/graph-4x.png">&nbsp;&nbsp;&nbsp;Gráficos</p>
+	<div class="btn-group btn-group-sm ">
+    <button type="button" id="OrdenarA" class="btn btn-primary">Ascendente</button>
+    <button type="button" id="OrdenarD" class="btn btn-primary">Descendente</button>
+    <button type="button" id="removeDataset"class="btn btn-primary">Borrar</button>
+	 <select class="primary-sm" id="inlineFormCustomSelect">
+        <option selected>Choose..........................</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+      </select>
+		</div>
+</h6>
 
 
 			<div class="border border-primary">
@@ -192,26 +204,16 @@ options="thead-light" data-id-field="resource.code.coding.0.display" data-silent
 			
 				<div class="row">
 					<div class="col-sm">
-				<div class="col-15"><canvas id="myChart"></canvas></div>
-					</div>
-				</div>	
-				<div class="row">
-					<div class="col-sm">
-						<div class="col-2"> <div class="btn-group btn-group-sm">
-    <button type="button" id="OrdenarA" class="btn btn-primary">Ascendente</button>
-    <button type="button" id="OrdenarD" class="btn btn-primary">Descendente</button>
-    <button type="button" id="removeDataset"class="btn btn-primary">Borrar</button>
-  </div></div>
-					</div>
-						<div class="col-sm">
-				<div class="col-2"><canvas id="chart-2"></canvas></div>
-					</div>
+				<div class="col-15"><canvas id="myChart" width="1000" height="450"></canvas></div>
+				
+	
+				
 				</div>
 
 			
+		</div>	
 			
-			
-			
+	</div>		
 			<script>
 			var ctx = document.getElementById('myChart').getContext('2d');
 var chart = new Chart(ctx, {
@@ -418,7 +420,26 @@ document.getElementById('OrdenarD').addEventListener('click', function() {
 		});		
 			
 			
+document.getElementById('addDataset').addEventListener('click', function() {
+
+		var newDataset = {
+				label: 'Dataset',
+     			backgroundColor: 'rgb(255, 99, 132)',
+	//		borderColor: dsColor,
+	//			borderWidth: 1,
+		        fill: false,
+				data: [12,25,25,4,5,5,5,5,5,5,5,5,5,5,5,5]
+			};
+
+	//		for (var index = 0; index < barChartData.labels.length; ++index) {
+	//			newDataset.data.push(randomScalingFactor());
+	//		}
+//
+			chart.data.datasets.push(newDataset);
+		
 			
+			chart.update();
+		});			
 			
 			
 			
