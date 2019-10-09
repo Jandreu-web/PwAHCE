@@ -127,7 +127,7 @@
       <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" id="list-home-list" data-toggle="list" href="#list-settings"  role="tab" aria-controls="home">Cuidados<span id="careplani" class="badge badge-dark badge-pill">0</span></a>
       <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Episodios<span id="encounteri" class="badge badge-dark badge-pill">0</span></a>
       <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">Medicación <span id="medicationi" class="badge badge-dark badge-pill">0</span></a>
-      <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" id="list-chart-list" data-toggle="list" href="#list-chart" role="tab">Gráficos<span id="charti" class="badge badge-dark badge-pill">10</span></a>
+      <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" id="list-chart-list" data-toggle="list" href="#list-chart" role="tab">ePizarra<span id="charti" class="badge badge-dark badge-pill">10</span></a>
     </div>
   </div>
 </div>  
@@ -183,19 +183,30 @@ options="thead-light" data-id-field="resource.code.coding.0.display" data-silent
       <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list"><hr/>
 <h6 class="mb-3"><p id="patient_name"><img onclick="busca()" src="images/document-4x.png">&nbsp;&nbsp;&nbsp;Cuidados</p></h6></div>
 	  <div class="tab-pane fade" id="list-chart" role="tabpanel" aria-labelledby="list-chart-list"><hr/>
-<h6 class="mb-3"><p id="patient_name"><img onclick="busca()" src="images/graph-4x.png">&nbsp;&nbsp;&nbsp;Gráficos</p>
-	<div class="btn-group btn-group-sm ">
-    <button type="button" id="OrdenarA" class="btn btn-primary">>></button>
-    <button type="button" id="OrdenarD" class="btn btn-primary"><<</button>
-    <button type="button" id="removeDataset"class="btn btn-primary">Borrar</button>
-	 <select class="primary-sm" id="inlineFormCustomSelect">
-        <option selected>Medicamentos</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
-      </select>
-		</div>
+<h6 class="mb-3"><p id="patient_name"><img onclick="busca()" src="images/graph-4x.png">&nbsp;&nbsp;&nbsp;ePizarra</p>
+	
+	<img id="OrdenarA" src="images/sort-ascending-2x.png">&nbsp;
+	<img id="OrdenarD" src="images/sort-descending-2x.png">&nbsp;
+	<img id="removeDataset" src="images/delete-2x.png">&nbsp;&nbsp;&nbsp;
+	
+  <select title="Medicamento" class="selectpicker  selectpicker-primary">
+  <option>Medicamento...</option>
+  <option>One</option>
+  <option>Two</option>
+  <option>Three</option>
+</select>
+<img id="addDataset" src="images/pencil-2x.png">&nbsp;&nbsp;&nbsp;
+ <select title="Determinación" class="selectpicker  selectpicker-primary">
+  <option>Determinación...</option>
+  <option>One</option>
+  <option>Two</option>
+  <option>Three</option>
+</select>
+<img id="addDataset" src="images/pencil-2x.png">&nbsp;&nbsp;&nbsp;
 </h6>
+	
+		
+
 
 
 			<div class="border border-primary">
@@ -204,7 +215,7 @@ options="thead-light" data-id-field="resource.code.coding.0.display" data-silent
 			
 				<div class="row">
 					<div class="col-sm">
-				<div class="col-15"><canvas id="myChart" width="1000" height="450"></canvas></div>
+				<div class="col-15"><canvas id="myChart"></canvas></div>
 				
 	
 				
@@ -216,20 +227,22 @@ options="thead-light" data-id-field="resource.code.coding.0.display" data-silent
 	</div>		
 			<script>
 			var ctx = document.getElementById('myChart').getContext('2d');
-var chart = new Chart(ctx, {
+     var chart = new Chart(ctx, {
     // The type of chart we want to create
     type: 'line',
-
+    //backgroundColor: "#F5DEB3"
     // The data for our dataset
     data: {
        labels:  [1, 2, 3],
         datasets: [{
             label: 'Creatinina',
-           // backgroundColor: 'rgb(255, 99, 132)',
 			fill: false,
             borderColor: 'rgb(006,057,113)',
+			backgroundColor:'rgb(006,057,118)',
+			hoverBackgroundColor:'rgb(006,057,118)',
+			lineTension: 0,
             data: [5,5,-5]
-			
+			 
 	
         },
 		{
@@ -256,6 +269,10 @@ var chart = new Chart(ctx, {
 
     // Configuration options go here
     options: {
+					
+					responsive: true,
+					maintainAspectRatio: true,
+					
 					tooltips: {
 					mode: 'index',
 					intersect: false,
@@ -277,23 +294,35 @@ var chart = new Chart(ctx, {
 						display: true,
 					
 						scaleLabel: {
-							display: true,
+							display: false,
+							fontSize: 12
 							//labelString: 'Month'
-						}
+						},
+						gridLines: {
+							display:true
+						},
+						ticks: {
+                            maxTicksLimit: 10
+                        }
+
+
 					}],
 
 					yAxes: [{
-						display: true,
+						display: 'auto',
 					
 						scaleLabel: {
 							display: true,
+							fontSize: 12
 							//labelString: 'Value'
 						},
 
 						ticks: {
 							suggestedMin: 20,
 							suggestedMax: -20,
-							stepSize: 2
+							stepSize: 2,
+						    maxTicksLimit: 5
+                        
 						}
 					}]}
 
@@ -307,7 +336,10 @@ var chart = new Chart(ctx, {
 
 var array2=[[20190714,1.7,-1,5],[20190722,2,-1,5],[20190716,3,-1,2],[20190716,4,-2,2],[20170716,5,-2,2],[20190722,2,-1,5],[20190722,2,-1,5],[20150722,2,-1,5],[20190722,2,-1,5],[20190714,1.7,-1,5],[20190722,2,-1,5],[20190716,3,-1,2],[20190716,4,-2,2],[20170716,5,-2,2],[20190722,2,-1,5],[20190722,2,-1,5],[20150722,2,-1,5],[20190722,2,-1,5],[20190714,1.7,-1,5],[20190722,2,-1,5],[20190716,3,-1,2],[20190716,4,-2,2],[20170716,5,-2,2],[20190722,2,-1,5],[20190722,2,-1,5],[20150722,2,-1,5],[20190722,2,-1,5],[20190714,1.7,-1,5],[20190722,2,-1,5],[20190716,3,-1,2],[20190716,4,-2,2],[20170716,5,-2,2],[20190722,2,-1,5],[20190722,2,-1,5],[20150722,2,-1,5],[20190722,2,-1,5],[20190714,1.7,-1,5],[20190722,2,-1,5],[20190716,3,-1,2],[20190716,4,-2,2],[20170716,5,-2,2],[20190722,2,-1,5],[20190722,2,-1,5],[20150722,2,-1,5],[20190722,2,-1,5],[20190714,1.7,-1,5],[20190722,2,-1,5],[20190716,3,-1,2],[20190716,4,-2,2],[20170716,5,-2,2],[20190722,2,-1,5],[20190722,2,-1,5],[20150722,2,-1,5],[20190722,2,-1,5],[20190714,1.7,-1,5],[20190722,2,-1,5],[20190716,3,-1,2],[20190716,4,-2,2],[20170716,5,-2,2],[20190722,2,-1,5],[20190722,2,-1,5],[20150722,2,-1,5],[20190722,2,-1,5],[20190714,1.7,-1,5],[20190722,2,-1,5],[20190716,3,-1,2],[20190716,4,-2,2],[20170716,5,-2,2],[20190722,2,-1,5],[20190722,2,-1,5],[20150722,2,-1,5],[20190722,2,-1,5],[20190714,1.7,-1,5],[20190722,2,-1,5],[20190716,3,-1,2],[20190716,4,-2,2],[20170716,5,-2,2],[20190722,2,-1,5],[20190722,2,-1,5],[20150722,2,-1,5],[20190722,2,-1,5],[20190714,1.7,-1,5],[20190722,2,-1,5],[20190716,3,-1,2],[20190716,4,-2,2],[20170716,5,-2,2],[20190722,2,-1,5],[20190722,2,-1,5],[20150722,2,-1,5],[20190722,2,-1,5]];
 
-	
+
+
+
+
 var sortedArray = array2.sort(function(b,a) {
   if (a[0] == b[0]) {
     return a[1] - b[1];
@@ -427,8 +459,8 @@ document.getElementById('addDataset').addEventListener('click', function() {
      			backgroundColor: 'rgb(255, 99, 132)',
 	//		borderColor: dsColor,
 	//			borderWidth: 1,
-		        fill: false,
-				data: [12,25,25,4,5,5,5,5,5,5,5,5,5,5,5,5]
+		        fill: true,
+				data: [12,25,25,4,5,5,5,5,5,5,5,5,5,5,5]
 			};
 
 	//		for (var index = 0; index < barChartData.labels.length; ++index) {
@@ -436,7 +468,8 @@ document.getElementById('addDataset').addEventListener('click', function() {
 	//		}
 //
 			chart.data.datasets.push(newDataset);
-		
+			//chart.data.labels=[12,25,25,4,5,5,5,5,5,5,5,5,5,225,5,5]
+		 
 			
 			chart.update();
 		});			
