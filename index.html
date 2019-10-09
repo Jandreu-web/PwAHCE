@@ -185,19 +185,33 @@ options="thead-light" data-id-field="resource.code.coding.0.display" data-silent
 	  <div class="tab-pane fade" id="list-chart" role="tabpanel" aria-labelledby="list-chart-list"><hr/>
 <h6 class="mb-3"><p id="patient_name"><img onclick="busca()" src="images/graph-4x.png">&nbsp;&nbsp;&nbsp;ePizarra
 		
-	<img id="OrdenarA" src="images/sort-ascending-2x.png">&nbsp;
-	<img id="OrdenarD" src="images/sort-descending-2x.png">&nbsp;
-	<img id="removeDataset" src="images/delete-2x.png">&nbsp;
-	<img id="addDataset" src="images/pencil-2x.png">&nbsp;
 	
-</p></h6>
-<div class="bs-example">
+</p>
+<img id="OrdenarA" src="images/sort-ascending-2x.png">&nbsp;
+	<img id="OrdenarD" src="images/sort-descending-2x.png">&nbsp;
+	<img id="removeDataset" src="images/delete-2x.png">&nbsp;&nbsp;&nbsp;
+	<!--<img id="addDataset" src="images/pencil-2x.png">&nbsp;&nbsp;&nbsp; -->
+	<img id="addDataset" src="images/pildora-2x.png"><select id="mySelect" style="font-size:8pt">>
+    <option onclick="addmedicamento()">Amlodipine 5 MG Oral Tablet</option>
+    <option>Amlodipine 5 MG Oral Tablet</option>
+    <option>Pineapple</option>
+    <option>Banana</option>
+  </select>
+<img id="addDataset" src="images/jerin-2x.png"><select id="mySelect" style="font-size:8pt">>
+    <option onclick="addmedicamento()">Albúmina</option>
+    <option>GPT</option>
+    <option>GOT</option>
+    <option>Bilirrubina total</option>
+  </select>
+
+</h6>
+<!-- <div class="bs-example">
 	
     <div class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown"> <img id="addDataset" src="images/pildora-2x.png">&nbsp;Medicamento</a>
         <div class="dropdown-menu">
             <a onclick="addmedicamento()" class="dropdown-item">Amlodipine 5 MG Oral Tablet</a>
-            <a onclick="addmedicamento()"class="dropdown-item">Simvastatin 20 MG Oral Tablet</a>
+            <a onclick="addmedicamento()"class="dropdown-item">Amlodipine 5 MG Oral Tablet</a>
         </div>
     </div>
 
@@ -213,7 +227,7 @@ options="thead-light" data-id-field="resource.code.coding.0.display" data-silent
            <a onclick="addmedicamento()" class="dropdown-item">I.N.R.</a>
         </div>
     </div>
-</div>
+</div> -->
 
 
 
