@@ -196,10 +196,8 @@ options="thead-light" data-id-field="resource.code.coding.0.display" data-silent
     <option>Amlodipine 15 MG</option>
     </select>
 <img id="addDataset" src="images/jerin-2x.png">&nbsp;<select id="determinacion" onchange="adddeterminacion()" style="font-size:8pt">
-    <option>Albúmina</option>
-    <option>GPT</option>
-    <option>GOT</option>
-    <option>Bilirrubina total</option>
+   <option>...</option>
+  
   </select>
 
 </h6>
@@ -245,8 +243,93 @@ options="thead-light" data-id-field="resource.code.coding.0.display" data-silent
 		</div>	
 			
 	</div>		
-			<script>
-			var ctx = document.getElementById('myChart').getContext('2d');
+		
+
+			
+			</div>
+
+
+
+</div>
+
+
+
+    </div>
+
+  </div>
+
+
+	
+	
+	  
+	  
+	  
+	
+
+	
+
+<hr/>
+
+<div id="accordion2">
+  <div class="card border-primary sm-3" >
+    <div class="card-header" id="headingOne">
+      <h5 class="mb-3">
+		<img onclick="functionactualiza()" src="images/cog-4x.png">
+        <button  class="btn btn-link" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseOne"><p id="configuration" class="font-weight-bold">Fhir Server Connection</p>
+        </button>
+		
+      </h5>
+    </div>
+
+    <div id="collapseTwo" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion2">
+      <div class="card-body">
+	
+	  
+	<form>
+  <div class="row">
+    <div class="col">
+     <select class="custom-select my-1 mr-sm-2 form-control-sm" id="inlineFormCustomSelectPref">
+    <option selected>Choose...</option>
+    <option value="http://hapi.fhir.org/baseR4/">Hospital Paco</option>
+    <option value="https://stu3.test.pyrohealth.net/fhir/">Hospital Pepe</option>
+    <option value="https://r3.smarthealthit.org/">Hospital Privado</option>
+	<option value="http://localhost:9002/r3/">Lab (+)</option>
+    </div>
+    <div class="col">
+       <input type="text" class="form-control mb-2 mr-sm-2 form-control-sm" id="inlineFormInputName2" placeholder="3b0420d8-8d7d-4add-b20b-2c9bbb9e6962" value="3b0420d8-8d7d-4add-b20b-2c9bbb9e6962">
+    </div>
+  </div>
+</form>
+  
+	  
+       </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+</div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="jquery-3.2.1.slim.min.js"></script>
+	<!--<script src="js/jquery.dataTables.min.js"></script> -->
+	<!-- <script src="js/dataTables.rowGroup.min.js"></script> -->
+    <script src="popper.min.js"></script>
+    <script src="bootstrap.min.js"></script>
+ 
+
+
+
+  </body>
+  
+  <script>
+		var ctx = document.getElementById('myChart').getContext('2d');
      var chart = new Chart(ctx, {
     // The type of chart we want to create
     type: 'line',
@@ -547,94 +630,18 @@ function adddeterminacion() {
 		 
 			
 			chart.update();
-		};
-						
-			</script>
 			
-			</div>
+			
 
-
-
-</div>
-
-
-
-    </div>
-
-  </div>
-
-
-	
-	
-	  
-	  
-	  
+		};
 	
 
-	
-
-<hr/>
-
-<div id="accordion2">
-  <div class="card border-primary sm-3" >
-    <div class="card-header" id="headingOne">
-      <h5 class="mb-3">
-		<img onclick="functionactualiza()" src="images/cog-4x.png">
-        <button  class="btn btn-link" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseOne"><p id="configuration" class="font-weight-bold">Fhir Server Connection</p>
-        </button>
-		
-      </h5>
-    </div>
-
-    <div id="collapseTwo" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion2">
-      <div class="card-body">
-	
-	  
-	<form>
-  <div class="row">
-    <div class="col">
-     <select class="custom-select my-1 mr-sm-2 form-control-sm" id="inlineFormCustomSelectPref">
-    <option selected>Choose...</option>
-    <option value="http://hapi.fhir.org/baseR4/">Hospital Paco</option>
-    <option value="https://stu3.test.pyrohealth.net/fhir/">Hospital Pepe</option>
-    <option value="https://r3.smarthealthit.org/">Hospital Privado</option>
-	<option value="http://localhost:9002/r3/">Lab (+)</option>
-    </div>
-    <div class="col">
-       <input type="text" class="form-control mb-2 mr-sm-2 form-control-sm" id="inlineFormInputName2" placeholder="3b0420d8-8d7d-4add-b20b-2c9bbb9e6962" value="3b0420d8-8d7d-4add-b20b-2c9bbb9e6962">
-    </div>
-  </div>
-</form>
-  
-	  
-       </div>
-    </div>
-  </div>
 
 
 
 
 
-
-
-</div>
-
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="jquery-3.2.1.slim.min.js"></script>
-	<!--<script src="js/jquery.dataTables.min.js"></script> -->
-	<!-- <script src="js/dataTables.rowGroup.min.js"></script> -->
-    <script src="popper.min.js"></script>
-    <script src="bootstrap.min.js"></script>
- 
-
-
-
-  </body>
-  
-  <script>
-  
+////////////////////////////////////////////////
 
 function busca(){
   var datobs= [];
@@ -673,7 +680,7 @@ function busca(){
 			   if (re.resource.resourceType == "Observation" && re.resource.category[0].coding[0].code=="laboratory"){
 			   observationi=observationi+1;
 			   datobs.push(re);
-			   
+				nombre=re.resource.code.coding[0].display;
 			  // console.log(indiceobs);
 					if (datobs[indiceobs].resource.valueQuantity){
 					valor=JSON.stringify(datobs[indiceobs].resource.valueQuantity.value);
@@ -685,13 +692,13 @@ function busca(){
 					
 					
 					texto=JSON.stringify(datobs[indiceobs].resource.component[0].code.text).substring(0,10);
+				        
 					texto=texto+" "+JSON.stringify(datobs[indiceobs].resource.component[0].valueQuantity.value)+JSON.stringify(datobs[indiceobs].resource.component[0].valueQuantity.unit);
 					texto=texto+" "+JSON.stringify(datobs[indiceobs].resource.component[1].code.text).substring(0,10);
 					texto=texto+" "+JSON.stringify(datobs[indiceobs].resource.component[1].valueQuantity.value)+JSON.stringify(datobs[indiceobs].resource.component[1].valueQuantity.unit);
 					datobs[indiceobs].resource.valueQuantity= [{ "value": ""}];
 					datobs[indiceobs].resource.valueQuantity.value=texto;
-					//datobs[indiceobs].resource.component.code[0].coding.display;
-					//+" "+datobs[indiceobs].resource.component.valueQuantity[0].value;
+					
 					
 					}
 				
@@ -699,13 +706,18 @@ function busca(){
 				//datobs[indiceobs].resource.effectiveDateTime="("+fecha.substring(1,11)+":"+"22)";
 				datobs[indiceobs].resource.effectiveDateTime=fecha.substring(1,11);
 				//datobs[indiceobs].resource.effectiveDateTime="(1:10),(2:20),(3:30),(4:24),(5:40),(6:65),(7:70),(8:90)",
+				  var select = document.getElementById("determinacion");
+                  select.options[select.options.length] = new Option(re.resource.code.coding[0].display,re.resource.code.coding[0].display);
+				
 				indiceobs=indiceobs+1;	
+				
+				
 			  }
 			   
             });
 	
-	$("#careplani").text(careplani);
-	$("#medicationi").text(medicationi);
+	 $("#careplani").text(careplani);
+	 $("#medicationi").text(medicationi);
 	 $("#observationi").text(observationi);
 	 $table.bootstrapTable({data: datobs});
 	
@@ -771,6 +783,8 @@ function functionactualiza(){
 	
     });
 }	
+
+
 
 </script>
 
