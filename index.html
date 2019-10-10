@@ -329,6 +329,8 @@ options="thead-light" data-id-field="resource.code.coding.0.display" data-silent
   </body>
   
   <script>
+  var bundle;
+  var grupo;
 		var ctx = document.getElementById('myChart').getContext('2d');
      var chart = new Chart(ctx, {
     // The type of chart we want to create
@@ -440,9 +442,6 @@ options="thead-light" data-id-field="resource.code.coding.0.display" data-silent
 var array2=[[20190714,1.7,-1,5],[20190722,2,-1,5],[20190716,3,-1,2],[20190716,4,-2,2],[20170716,5,-2,2],[20190722,2,-1,5],[20190722,2,-1,5],[20150722,2,-1,5],[20190722,2,-1,5],[20190714,1.7,-1,5],[20190722,2,-1,5],[20190716,3,-1,2],[20190716,4,-2,2],[20170716,5,-2,2],[20190722,2,-1,5],[20190722,2,-1,5],[20150722,2,-1,5],[20190722,2,-1,5],[20190714,1.7,-1,5],[20190722,2,-1,5],[20190716,3,-1,2],[20190716,4,-2,2],[20170716,5,-2,2],[20190722,2,-1,5],[20190722,2,-1,5],[20150722,2,-1,5],[20190722,2,-1,5],[20190714,1.7,-1,5],[20190722,2,-1,5],[20190716,3,-1,2],[20190716,4,-2,2],[20170716,5,-2,2],[20190722,2,-1,5],[20190722,2,-1,5],[20150722,2,-1,5],[20190722,2,-1,5],[20190714,1.7,-1,5],[20190722,2,-1,5],[20190716,3,-1,2],[20190716,4,-2,2],[20170716,5,-2,2],[20190722,2,-1,5],[20190722,2,-1,5],[20150722,2,-1,5],[20190722,2,-1,5],[20190714,1.7,-1,5],[20190722,2,-1,5],[20190716,3,-1,2],[20190716,4,-2,2],[20170716,5,-2,2],[20190722,2,-1,5],[20190722,2,-1,5],[20150722,2,-1,5],[20190722,2,-1,5],[20190714,1.7,-1,5],[20190722,2,-1,5],[20190716,3,-1,2],[20190716,4,-2,2],[20170716,5,-2,2],[20190722,2,-1,5],[20190722,2,-1,5],[20150722,2,-1,5],[20190722,2,-1,5],[20190714,1.7,-1,5],[20190722,2,-1,5],[20190716,3,-1,2],[20190716,4,-2,2],[20170716,5,-2,2],[20190722,2,-1,5],[20190722,2,-1,5],[20150722,2,-1,5],[20190722,2,-1,5],[20190714,1.7,-1,5],[20190722,2,-1,5],[20190716,3,-1,2],[20190716,4,-2,2],[20170716,5,-2,2],[20190722,2,-1,5],[20190722,2,-1,5],[20150722,2,-1,5],[20190722,2,-1,5],[20190714,1.7,-1,5],[20190722,2,-1,5],[20190716,3,-1,2],[20190716,4,-2,2],[20170716,5,-2,2],[20190722,2,-1,5],[20190722,2,-1,5],[20150722,2,-1,5],[20190722,2,-1,5]];
 
 
-
-
-
 var sortedArray = array2.sort(function(b,a) {
   if (a[0] == b[0]) {
     return a[1] - b[1];
@@ -462,39 +461,13 @@ etiqueta.push(sortedArray[i][0]);
 min.push(sortedArray[i][2]);
 max.push(sortedArray[i][3]);
 }
-//datos.push(sortedArray[1][1]);
-//datos.push(sortedArray[2][1]);
-//datos.push(sortedArray[3][1]);
-//datos.push(sortedArray[4][1]);
 
-//etiqueta.push(sortedArray[0][0]);
-//etiqueta.push(sortedArray[1][0]);
-//etiqueta.push(sortedArray[2][0]);
-//etiqueta.push(sortedArray[3][0]);
-//etiqueta.push(sortedArray[4][0]);
-
-//min.push(sortedArray[0][2]);
-//min.push(sortedArray[1][2]);
-//min.push(sortedArray[2][2]);
-//min.push(sortedArray[3][2]);
-//min.push(sortedArray[4][2]);
-
-//min.push(5);
-//min.push(5);
-//min.push(5);
-//max.push(30);
-//max.push(30);
-//max.push(30);
 chart.data.labels=etiqueta;
 chart.data.datasets[0].data = datos;
 //chart.data.datasets[0].label = "NUEVOOOOOO";
 chart.data.datasets[1].data = min;
 chart.data.datasets[2].data = max;
-//chart.data.datasets[2].data[2] = datos;
-//chart.data.labels.push(label);
-//    chart.data.datasets.forEach((dataset) => {
-//        dataset.data.push(data);
-//    });
+
 chart.update();
 chart.update();
 chart.update();
@@ -606,34 +579,7 @@ document.getElementById('addDataset').addEventListener('click', function() {
 			
 
 
-function adddeterminacion() {
 
-
-        var x = document.getElementById("determinacion").value;
-     
-
-		var newDataset = {
-				label: x,
-     			backgroundColor: 'rgb(255, 99, 132)',
-	//		borderColor: dsColor,
-	//			borderWidth: 1,
-		        fill: true,
-				data: [12,25,25,4,5,5,5,5,5,5,5,5,5,5,5]
-			};
-
-	//		for (var index = 0; index < barChartData.labels.length; ++index) {
-	//			newDataset.data.push(randomScalingFactor());
-	//		}
-//
-			chart.data.datasets.push(newDataset);
-			//chart.data.labels=[12,25,25,4,5,5,5,5,5,5,5,5,5,225,5,5]
-		 
-			
-			chart.update();
-			
-			
-
-		};
 	
 
 
@@ -662,6 +608,7 @@ function busca(){
       id: 'Patient/' + patientId +"/$everything?_count=500"
     }).then(function(pre) {
 	
+		bundle= pre.content.entry;
 	 pre.content.entry.forEach(function(re) {
            
 			 var ry=re.resource.code;
@@ -710,12 +657,12 @@ function busca(){
 				  // Group by name determinaciones...
 				
 				
-				if(grupo.indexOf(re.resource.code.coding[0].display)=== -1){
-				  var select = document.getElementById("determinacion");
-                  select.options[select.options.length] = new Option(re.resource.code.coding[0].display,re.resource.code.coding[0].display);
+							if(grupo.indexOf(re.resource.code.coding[0].display)=== -1){
+								var select = document.getElementById("determinacion");
+								select.options[select.options.length] = new Option(re.resource.code.coding[0].display,re.resource.code.coding[0].display);
 				  
-				}
-			    grupo.push(re.resource.code.coding[0].display);
+							}
+							grupo.push(re.resource.code.coding[0].display);
 				indiceobs=indiceobs+1;	
 				
 				
@@ -791,7 +738,54 @@ function functionactualiza(){
     });
 }	
 
+function adddeterminacion() {
 
+
+        var x = document.getElementById("determinacion").value;
+     
+		//x contiene ->
+	   var y=JSON.stringify(bundle[0].resource.resourceType);
+	   
+	   var yy=0;
+	   var data=[];
+		var labels=[];
+	bundle.forEach(function(re) {
+			
+					if(re.resource.resourceType == "Observation" && re.resource.category[0].coding[0].code=="laboratory"){
+						if (re.resource.code.coding[0].display==x){
+	//			
+						yy=yy+1;
+					
+						data.push(parseInt(JSON.stringify(re.resource.valueQuantity.value)));
+						labels.push("");
+						}
+					}	
+		
+	   
+				
+	});
+		
+		var newDataset = {
+				label: x +" "+data,
+     			backgroundColor: 'rgb(255, 99, 132)',
+	//		borderColor: dsColor,
+	//			borderWidth: 1,
+		        fill: true,
+				data: data
+			};
+
+	//		for (var index = 0; index < barChartData.labels.length; ++index) {
+	//			newDataset.data.push(randomScalingFactor());
+	//		}
+//
+			chart.data.datasets.push(newDataset);
+			chart.data.labels=labels;
+			
+			chart.update();
+			
+			
+
+		};
 
 </script>
 
