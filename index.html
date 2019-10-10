@@ -147,7 +147,7 @@
 <!--<button type="button" class="btn btn-outline-light" data-toggle="modal" data-target="#myModal"><img src="images/document-4x.png"></button> -->
 
 <div class="table-responsive-sm border border-primary" style="height: 250px; overflow-y: scroll;">
-<table  class="table table-responsive-sm datatable table-sm table-striped table-hover mx-auto w-auto" id="table" 
+<table  class="table table-responsive-sm datatable table-sm table-striped table-hover  mx-auto w-auto" id="table" 
 options="thead-light" data-id-field="resource.code.coding.0.display" data-silent-sort="false"> 
  
 <!--data-height="150"  "-->
@@ -191,14 +191,12 @@ options="thead-light" data-id-field="resource.code.coding.0.display" data-silent
 	<img id="OrdenarD" src="images/sort-descending-2x.png">&nbsp;
 	<img id="removeDataset" src="images/delete-2x.png">&nbsp;&nbsp;&nbsp;
 	<!--<img id="addDataset" src="images/pencil-2x.png">&nbsp;&nbsp;&nbsp; -->
-	<img id="addDataset" src="images/pildora-2x.png"><select id="mySelect" style="font-size:8pt">>
-    <option onclick="addmedicamento()">Amlodipine 5 MG Oral Tablet</option>
-    <option>Amlodipine 5 MG Oral Tablet</option>
-    <option>Pineapple</option>
-    <option>Banana</option>
-  </select>
-<img id="addDataset" src="images/jerin-2x.png"><select id="mySelect" style="font-size:8pt">>
-    <option onclick="addmedicamento()">Albúmina</option>
+	<img id="addDataset" src="images/pildora-2x.png">&nbsp;<select id="medicamento" onchange="addmedicamento()" style="font-size:8pt">
+    <option>Amlodipine 5 MG</option>
+    <option>Amlodipine 15 MG</option>
+    </select>
+<img id="addDataset" src="images/jerin-2x.png">&nbsp;<select id="determinacion" onchange="adddeterminacion()" style="font-size:8pt">
+    <option>Albúmina</option>
     <option>GPT</option>
     <option>GOT</option>
     <option>Bilirrubina total</option>
@@ -499,8 +497,12 @@ document.getElementById('addDataset').addEventListener('click', function() {
 
  function addmedicamento() {
 
+
+        var x = document.getElementById("medicamento").value;
+     
+
 		var newDataset = {
-				label: 'Dataset',
+				label: x,
      			backgroundColor: 'rgb(255, 99, 132)',
 	//		borderColor: dsColor,
 	//			borderWidth: 1,
@@ -519,7 +521,34 @@ document.getElementById('addDataset').addEventListener('click', function() {
 			chart.update();
 		};
 			
+
+
+function adddeterminacion() {
+
+
+        var x = document.getElementById("determinacion").value;
+     
+
+		var newDataset = {
+				label: x,
+     			backgroundColor: 'rgb(255, 99, 132)',
+	//		borderColor: dsColor,
+	//			borderWidth: 1,
+		        fill: true,
+				data: [12,25,25,4,5,5,5,5,5,5,5,5,5,5,5]
+			};
+
+	//		for (var index = 0; index < barChartData.labels.length; ++index) {
+	//			newDataset.data.push(randomScalingFactor());
+	//		}
+//
+			chart.data.datasets.push(newDataset);
+			//chart.data.labels=[12,25,25,4,5,5,5,5,5,5,5,5,5,225,5,5]
+		 
 			
+			chart.update();
+		};
+						
 			</script>
 			
 			</div>
