@@ -292,11 +292,11 @@ options="thead-light" data-id-field="resource.code.coding.0.display" data-silent
     <option selected>Choose...</option>
     <option value="http://hapi.fhir.org/baseR4/">Hospital Paco</option>
     <option value="https://stu3.test.pyrohealth.net/fhir/">Hospital Pepe</option>
-    <option value="https://r3.smarthealthit.org/">Hospital Privado</option>
+    <option selected="selected" value="https://r3.smarthealthit.org/">Hospital Privado</option>
 	<option value="http://localhost:9002/r3/">Lab (+)</option>
     </div>
     <div class="col">
-       <input type="text" class="form-control mb-2 mr-sm-2 form-control-sm" id="inlineFormInputName2" placeholder="3b0420d8-8d7d-4add-b20b-2c9bbb9e6962" value="3b0420d8-8d7d-4add-b20b-2c9bbb9e6962">
+       <input type="text" class="form-control mb-2 mr-sm-2 form-control-sm" id="inlineFormInputName2" placeholder="964a0d33-6a80-4f34-9ba0-af985aba8100" value="964a0d33-6a80-4f34-9ba0-af985aba8100">
     </div>
   </div>
 </form>
@@ -749,15 +749,14 @@ function adddeterminacion() {
 	   var yy=0;
 	   var data=[];
 		var labels=[];
-	bundle.forEach(function(re) {
+	   bundle.forEach(function(re) {
 			
 					if(re.resource.resourceType == "Observation" && re.resource.category[0].coding[0].code=="laboratory"){
 						if (re.resource.code.coding[0].display==x){
 	//			
-						yy=yy+1;
-					
-						data.push(parseInt(JSON.stringify(re.resource.valueQuantity.value)));
-						labels.push("");
+				        nvlaor=re.resource.valueQuantity.value.split(" ",1);
+						data.push(nvlaor);
+						labels.push(re.resource.effectiveDateTime);
 						}
 					}	
 		
@@ -766,11 +765,12 @@ function adddeterminacion() {
 	});
 		
 		var newDataset = {
-				label: x +" "+data,
-     			backgroundColor: 'rgb(255, 99, 132)',
+				label: x,
+     			//backgroundColor: 'rgb(006,057,113)',
+				borderColor: 'rgb(009,057,'+ (Math.floor(Math.random() * (254 - 0)) + 0)+')',
 	//		borderColor: dsColor,
 	//			borderWidth: 1,
-		        fill: true,
+		        fill: false,
 				data: data
 			};
 
