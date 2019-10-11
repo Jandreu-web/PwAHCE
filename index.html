@@ -281,7 +281,7 @@ options="thead-light" data-id-field="resource.code.coding.0.display" data-silent
       </h5>
     </div>
 
-    <div id="collapseTwo" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion2">
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingOne" data-parent="#accordion2">
       <div class="card-body">
 	
 	  
@@ -296,7 +296,7 @@ options="thead-light" data-id-field="resource.code.coding.0.display" data-silent
 	<option value="http://localhost:9002/r3/">Lab (+)</option>
     </div>
     <div class="col">
-       <input type="text" class="form-control mb-2 mr-sm-2 form-control-sm" id="inlineFormInputName2" placeholder="964a0d33-6a80-4f34-9ba0-af985aba8100" value="964a0d33-6a80-4f34-9ba0-af985aba8100">
+       <input type="text" class="form-control mb-2 mr-sm-2 form-control-sm" id="inlineFormInputName2" placeholder="e5a01619-1486-44de-8c6d-d922e6ded844" value="e5a01619-1486-44de-8c6d-d922e6ded844">
     </div>
   </div>
 </form>
@@ -663,7 +663,7 @@ function busca(){
 				  
 							}
 							grupo.push(re.resource.code.coding[0].display);
-				indiceobs=indiceobs+1;	
+				            indiceobs=indiceobs+1;	
 				
 				
 			  }
@@ -746,10 +746,10 @@ function adddeterminacion() {
 		//x contiene ->
 	   var y=JSON.stringify(bundle[0].resource.resourceType);
 	   
-	   var yy=0;
-	   var data=[];
+	    var yy=0;
+	    var data=[];
 		var labels=[];
-	   bundle.forEach(function(re) {
+	    bundle.forEach(function(re) {
 			
 					if(re.resource.resourceType == "Observation" && re.resource.category[0].coding[0].code=="laboratory"){
 						if (re.resource.code.coding[0].display==x){
