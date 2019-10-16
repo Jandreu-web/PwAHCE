@@ -332,6 +332,7 @@ options="thead-light" data-id-field="resource.code.coding.0.display" data-silent
   <script>
   var bundle;
   var grupo;
+  var array2=[];
 		var ctx = document.getElementById('myChart').getContext('2d');
      var chart = new Chart(ctx, {
     // The type of chart we want to create
@@ -341,7 +342,7 @@ options="thead-light" data-id-field="resource.code.coding.0.display" data-silent
     data: {
        labels:  [1, 2, 3],
         datasets: [{
-            label: 'Creatinina',
+            label: 'EXAMPLE DATA',
 			fill: false,
             borderColor: 'rgb(006,057,113)',
 			backgroundColor:'rgb(006,057,118)',
@@ -440,7 +441,7 @@ options="thead-light" data-id-field="resource.code.coding.0.display" data-silent
 
 // recupero datos en array de array.
 
-var array2=[[20190714,1.7,-1,5],[20190722,2,-1,5],[20190716,3,-1,2],[20190716,4,-2,2],[20170716,5,-2,2],[20190722,2,-1,5],[20190722,2,-1,5],[20150722,2,-1,5],[20190722,2,-1,5],[20190714,1.7,-1,5],[20190722,2,-1,5],[20190716,3,-1,2],[20190716,4,-2,2],[20170716,5,-2,2],[20190722,2,-1,5],[20190722,2,-1,5],[20150722,2,-1,5],[20190722,2,-1,5],[20190714,1.7,-1,5],[20190722,2,-1,5],[20190716,3,-1,2],[20190716,4,-2,2],[20170716,5,-2,2],[20190722,2,-1,5],[20190722,2,-1,5],[20150722,2,-1,5],[20190722,2,-1,5],[20190714,1.7,-1,5],[20190722,2,-1,5],[20190716,3,-1,2],[20190716,4,-2,2],[20170716,5,-2,2],[20190722,2,-1,5],[20190722,2,-1,5],[20150722,2,-1,5],[20190722,2,-1,5],[20190714,1.7,-1,5],[20190722,2,-1,5],[20190716,3,-1,2],[20190716,4,-2,2],[20170716,5,-2,2],[20190722,2,-1,5],[20190722,2,-1,5],[20150722,2,-1,5],[20190722,2,-1,5],[20190714,1.7,-1,5],[20190722,2,-1,5],[20190716,3,-1,2],[20190716,4,-2,2],[20170716,5,-2,2],[20190722,2,-1,5],[20190722,2,-1,5],[20150722,2,-1,5],[20190722,2,-1,5],[20190714,1.7,-1,5],[20190722,2,-1,5],[20190716,3,-1,2],[20190716,4,-2,2],[20170716,5,-2,2],[20190722,2,-1,5],[20190722,2,-1,5],[20150722,2,-1,5],[20190722,2,-1,5],[20190714,1.7,-1,5],[20190722,2,-1,5],[20190716,3,-1,2],[20190716,4,-2,2],[20170716,5,-2,2],[20190722,2,-1,5],[20190722,2,-1,5],[20150722,2,-1,5],[20190722,2,-1,5],[20190714,1.7,-1,5],[20190722,2,-1,5],[20190716,3,-1,2],[20190716,4,-2,2],[20170716,5,-2,2],[20190722,2,-1,5],[20190722,2,-1,5],[20150722,2,-1,5],[20190722,2,-1,5],[20190714,1.7,-1,5],[20190722,2,-1,5],[20190716,3,-1,2],[20190716,4,-2,2],[20170716,5,-2,2],[20190722,2,-1,5],[20190722,2,-1,5],[20150722,2,-1,5],[20190722,2,-1,5]];
+array2=[[20190714,1.7,-1,5],[20190722,2,-1,5],[20190716,3,-1,2],[20190716,4,-2,2],[20170716,5,-2,2],[20190722,2,-1,5],[20190722,2,-1,5],[20150722,2,-1,5],[20190722,2,-1,5],[20190714,1.7,-1,5],[20190722,2,-1,5],[20190716,3,-1,2],[20190716,4,-2,2],[20170716,5,-2,2],[20190722,2,-1,5],[20190722,2,-1,5],[20150722,2,-1,5],[20190722,2,-1,5],[20190714,1.7,-1,5],[20190722,2,-1,5],[20190716,3,-1,2],[20190716,4,-2,2],[20170716,5,-2,2],[20190722,2,-1,5],[20190722,2,-1,5],[20150722,2,-1,5],[20190722,2,-1,5],[20190714,1.7,-1,5],[20190722,2,-1,5],[20190716,3,-1,2],[20190716,4,-2,2],[20170716,5,-2,2],[20190722,2,-1,5],[20190722,2,-1,5],[20150722,2,-1,5],[20190722,2,-1,5],[20190714,1.7,-1,5],[20190722,2,-1,5],[20190716,3,-1,2],[20190716,4,-2,2],[20170716,5,-2,2],[20190722,2,-1,5],[20190722,2,-1,5],[20150722,2,-1,5],[20190722,2,-1,5],[20190714,1.7,-1,5],[20190722,2,-1,5],[20190716,3,-1,2],[20190716,4,-2,2],[20170716,5,-2,2],[20190722,2,-1,5],[20190722,2,-1,5],[20150722,2,-1,5],[20190722,2,-1,5],[20190714,1.7,-1,5],[20190722,2,-1,5],[20190716,3,-1,2],[20190716,4,-2,2],[20170716,5,-2,2],[20190722,2,-1,5],[20190722,2,-1,5],[20150722,2,-1,5],[20190722,2,-1,5],[20190714,1.7,-1,5],[20190722,2,-1,5],[20190716,3,-1,2],[20190716,4,-2,2],[20170716,5,-2,2],[20190722,2,-1,5],[20190722,2,-1,5],[20150722,2,-1,5],[20190722,2,-1,5],[20190714,1.7,-1,5],[20190722,2,-1,5],[20190716,3,-1,2],[20190716,4,-2,2],[20170716,5,-2,2],[20190722,2,-1,5],[20190722,2,-1,5],[20150722,2,-1,5],[20190722,2,-1,5],[20190714,1.7,-1,5],[20190722,2,-1,5],[20190716,3,-1,2],[20190716,4,-2,2],[20170716,5,-2,2],[20190722,2,-1,5],[20190722,2,-1,5],[20150722,2,-1,5],[20190722,2,-1,5]];
 
 
 var sortedArray = array2.sort(function(b,a) {
@@ -468,7 +469,7 @@ chart.data.datasets[0].data = datos;
 //chart.data.datasets[0].label = "NUEVOOOOOO";
 chart.data.datasets[1].data = min;
 chart.data.datasets[2].data = max;
-
+chart.data.datasets[0].label = array2[0];
 chart.update();
 chart.update();
 chart.update();
@@ -476,6 +477,8 @@ chart.update();
 			
 document.getElementById('OrdenarA').addEventListener('click', function() {
 
+
+//var array2=[["2019-07-14",1.7,-1,5],["2019-07-22",2,-1,5],["2019-07-16",3,-1,2],["2019-07-16",4,-2,2],["2017-07-16",5,-2,2]];
      var   sortedArray = array2.sort(function(b,a) {
 		if (a[0] == b[0]) {
 			return a[1] - b[1];
@@ -494,12 +497,14 @@ document.getElementById('OrdenarA').addEventListener('click', function() {
 		};
 		chart.data.labels=etiqueta;
 		chart.data.datasets[0].data = datos;
-		chart.data.datasets[1].data = min;
-		chart.data.datasets[2].data = max;
+		//chart.data.datasets[0].label = array2[0];
+		//chart.data.datasets[0].data = datos;
+		//chart.data.datasets[1].data = min;
+		//chart.data.datasets[2].data = max;
 		chart.update();
 });
 document.getElementById('OrdenarD').addEventListener('click', function() {
-
+//var array2=[["2019-07-14",1.7,-1,5],["2019-07-22",2,-1,5],["2019-07-16",3,-1,2],["2019-07-16",4,-2,2],["2017-07-16",5,-2,2]];
     var  sortedArray = array2.sort(function(a,b) {
 		if (a[0] == b[0]) {
 			return a[1] - b[1];
@@ -518,8 +523,10 @@ document.getElementById('OrdenarD').addEventListener('click', function() {
 		};
 		chart.data.labels=etiqueta;
 		chart.data.datasets[0].data = datos;
-		chart.data.datasets[1].data = min;
-		chart.data.datasets[2].data = max;
+		//chart.data.datasets[0].label = etiqueta;
+		//chart.data.datasets[0].data = datos;
+		//chart.data.datasets[1].data = min;
+		//chart.data.datasets[2].data = max;
 		chart.update();
 });			
 			
@@ -750,6 +757,8 @@ function adddeterminacion() {
 	 
 	    var data=[];
 		var labels=[];
+		var tempo;
+		array2.length=0;
 	    bundle.forEach(function(re) {
 			
 					if(re.resource.resourceType == "Observation" && re.resource.category[0].coding[0].code=="laboratory"){
@@ -757,7 +766,13 @@ function adddeterminacion() {
 	//			
 				        nvlaor=re.resource.valueQuantity.value.split(" ",1);
 						data.push(nvlaor);
-						labels.push(re.resource.effectiveDateTime);
+						labels.push(re.resource.effectiveDateTime.replace("-","").replace("-",""));
+						//tempo.push(re.resource.effectiveDateTime.replace("-","").replace("-",""));
+						//tempo.push(nvlaor);
+						//tempo.push(0);
+						//tempo.push(0);
+						tempo=[re.resource.effectiveDateTime.replace("-","").replace("-",""),nvlaor,0,0];
+						array2.push(tempo);
 						}
 					}	
 		
@@ -765,14 +780,31 @@ function adddeterminacion() {
 				
 	});
 		
+		var  sortedArray = array2.sort(function(b,a) {
+		if (a[0] == b[0]) {
+			return a[1] - b[1];
+			}
+			return b[0] - a[0];
+		});
+		datos =[];
+		min =[];
+		max =[];
+		etiqueta=[];
+		for(i=0;i<sortedArray.length;i++){
+		datos.push(sortedArray[i][1]);
+		etiqueta.push(sortedArray[i][0]);
+		min.push(sortedArray[i][2]);
+		max.push(sortedArray[i][3]);
+		};
+		
 		var newDataset = {
-				label: x+" "+unit,
+				label: x,
      			//backgroundColor: 'rgb(006,057,113)',
 				borderColor: 'rgb(009,057,'+ (Math.floor(Math.random() * (254 - 0)) + 0)+')',
 	//		borderColor: dsColor,
 	//			borderWidth: 1,
 		        fill: false,
-				data: data
+				data: datos
 			};
 
 	//		for (var index = 0; index < barChartData.labels.length; ++index) {
@@ -780,7 +812,8 @@ function adddeterminacion() {
 	//		}
 //
 			chart.data.datasets.push(newDataset);
-			chart.data.labels=labels;
+			chart.data.labels=etiqueta;
+			//chart.data.datasets.label=array2[0]
 			
 			chart.update();
 			
