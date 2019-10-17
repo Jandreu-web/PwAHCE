@@ -225,7 +225,7 @@ options="thead-light"  data-silent-sort="false">
 	<img id="removeDataset" src="images/delete-2x.png">&nbsp;&nbsp;&nbsp;
 	<!--<img id="addDataset" src="images/pencil-2x.png">&nbsp;&nbsp;&nbsp; -->
 	<img id="addDataset" src="images/pildora-2x.png">&nbsp;<select id="medicamento" onchange="addmedicamento()" style="font-size:8pt">
-    <option>Amlodipine 5 MG</option>
+    <option>...</option>
     <option>Amlodipine 15 MG</option>
     </select>
 <img id="addDataset" src="images/jerin-2x.png">&nbsp;<select id="determinacion" onchange="adddeterminacion()" style="font-size:8pt">
@@ -647,6 +647,7 @@ function busca(){
 	  var observationi=0;
 	  var indiceobs=0;
 	  var grupo= [];
+	  var grupomed=[];
 	  clientre.read({
       id: 'Patient/' + patientId +"/$everything?_count=500"
     }).then(function(pre) {
@@ -664,11 +665,15 @@ function busca(){
 			  }
 		
 			   if (re.resource.resourceType == "Medication"){
-			   medicationi=medicationi+1;
-			    
-				datosmed.push(re)
-				
-				
+			  
+			   datosmed.push(re)
+								if(grupomed.indexOf(re.resource.code.coding[0].display)=== -1){
+								var select = document.getElementById("medicamento");
+								select.options[select.options.length] = new Option(re.resource.code.coding[0].display);
+				  
+							}
+							grupomed.push(re.resource.code.coding[0].display);
+				 medicationi=medicationi+1;
 				
 			  }
 			  
