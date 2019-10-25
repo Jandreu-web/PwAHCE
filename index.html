@@ -215,7 +215,61 @@ options="thead-light"  data-silent-sort="false">
 
 </div>
       <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list"><hr/>
-<h6 class="mb-3"><p id="patient_name"><img onclick="busca()" src="images/document-4x.png">&nbsp;&nbsp;&nbsp;Cuidados</p></h6></div>
+<h6 class="mb-3"><p id="patient_name"><img onclick="busca()" src="images/document-4x.png">&nbsp;&nbsp;&nbsp;Cuidados</p></h6>
+
+<link href="https://unpkg.com/bootstrap-table@1.15.4/dist/bootstrap-table.min.css" rel="stylesheet">
+<script src="https://unpkg.com/bootstrap-table@1.15.4/dist/bootstrap-table.min.js"></script>
+	<div class="table-responsive-sm border border-primary" style="height: 250px; overflow-y: scroll;">
+<table  class="table table-responsive-sm datatable table-sm table-striped table-hover  mx-auto w-auto" id="tablacui" 
+options="thead-light" 
+data-detail-view="true"
+data-detail-view-by-click="true"
+data-detail-view-icon="false" data-silent-sort="false"> 
+ 
+<!--data-height="150"  "-->
+
+  <thead>
+    <tr>
+      <!--<th data-field="resource.category.coding.display" data-sortable="true">Categoría</th>-->
+	   <th data-field="resource.category.0.coding.0.display"  data-sortable="true">Categoría</th>
+   	  <!-- <th data-field="resource.activity.0.detail.code.coding.0.display" data-detail-formatter="Detalleactividad" data-sortable="true">Actividad</th> -->
+	   <th data-field="resource.activity.0.detail.code.coding.0.display" data-sortable="true">Actividad</th>
+	   <th data-field="resource.period.start" data-sortable="true">Inicio</th>
+	   <th data-field="resource.period.end" data-sortable="true">Fin</th>
+   	   <th data-field="resource.activity.0.detail.status" data-sortable="true">Estado</th>
+	  <!-- <th data-field="resource.effectiveDateTime" data-sortable="true" data-value-type="inline-line">inline-line</th>-->
+     </tr>
+  </thead>
+</table>
+</div>
+
+<script>
+  var $tablecui = $('#tablacui');
+
+ // $(function() {
+ //   var data = [
+    
+  //  ]
+  //  $table.bootstrapTable({data: data})
+ // })
+ detalle="hola"
+ function Detalleactividad(index, row) {
+ 
+	//	for(i=0;i < actividad.length;i++){
+	//	detalle=
+		//JSON.stringify(actividad[0].deta
+	//	detalle=detalle+" "+detalle;
+	//	}
+ 
+	return '.Actividad'
+    //return index + '. Item ID: ' + row.id
+  }
+
+</script>
+
+
+
+</div>
 	  <div class="tab-pane fade" id="list-chart" role="tabpanel" aria-labelledby="list-chart-list"><hr/>
 <h6 class="mb-3"><p id="patient_name"><img onclick="busca()" src="images/graph-4x.png">&nbsp;&nbsp;&nbsp;ePizarra
 		
@@ -635,6 +689,7 @@ document.getElementById('addDataset').addEventListener('click', function() {
 function busca(){
   var datobs= [];
   var datosmed=[];
+  var datoscui=[];
 //	 $table.bootstrapTable({data: datobs});
 
 //If you want to clear the data but keep the headers:
@@ -649,6 +704,7 @@ function busca(){
 	  var indiceobs=0;
 	  var grupo= [];
 	  var grupomed=[];
+	  var grupocui=[];
 	  clientre.read({
       id: 'Patient/' + patientId +"/$everything?_count=500"
     }).then(function(pre) {
@@ -661,6 +717,15 @@ function busca(){
 		
               
 			  if (re.resource.resourceType == "CarePlan"){
+			  
+			  datoscui.push(re)
+								//if(grupocui.indexOf(re.resource.category.coding.display)=== -1){
+								//var select = document.getElementById("medicamento");
+								//select.options[select.options.length] = new Option(re.resource.code.coding[0].display);
+				  				//}
+								//grupocui.push(re.resource.code.coding[0].display);
+			  
+			  
 			   careplani=careplani+1;
 			    
 			  }
@@ -726,9 +791,10 @@ function busca(){
 	 $("#careplani").text(careplani);
 	 $("#medicationi").text(medicationi);
 	 $("#observationi").text(observationi);
+	
 	 $tablemed.bootstrapTable({data: datosmed});
 	 $table.bootstrapTable({data: datobs});
-	 
+	  $tablecui.bootstrapTable({data: datoscui});
 	});
 }  
 
@@ -755,7 +821,7 @@ function functionactualiza(){
 		} else name="...";
 	  
       var formatted = name.given +" "+ name.family;
-	  formatted="José Luis Andreu";
+	  //formatted="José Luis Andreu";
 	  var bod = p.content.birthDate;
 	  var gender = p.content.gender;
 	   if (p.content.telecom){
