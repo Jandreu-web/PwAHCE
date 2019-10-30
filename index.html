@@ -359,74 +359,7 @@ data-detail-view-icon="false" data-silent-sort="false">
 <script src='packages/interaction/main.js'></script>
 <script src='packages/daygrid/main.js'></script>
 <script src='packages/timegrid/main.js'></script>
-<script>
 
-    document.addEventListener('DOMContentLoaded', function() {
-    var calendarEl = document.getElementById('calendar');
-
-    var calendar = new FullCalendar.Calendar(calendarEl, {
-      plugins: [ 'interaction', 'dayGrid', 'timeGrid' ],
-      defaultView: 'dayGridMonth',
-      defaultDate: '2019-10-07',
-      header: {
-        left: 'prev,next today',
-        center: 'title',
-        right: 'dayGridMonth,timeGridWeek,timeGridDay'
-      },
-      events: [
-        {
-          title: 'All Day Event',
-          start: '2019-10-01'
-        },
-        {
-          title: 'Long Event',
-          start: '2019-10-07',
-          end: '2019-10-10'
-        },
-        {
-          groupId: '999',
-          title: 'Repeating Event',
-          start: '2019-10-09T16:00:00'
-        },
-        {
-          groupId: '999',
-          title: 'Repeating Event',
-          start: '2019-10-16T16:00:00'
-        },
-        {
-          title: 'Conference',
-          start: '2019-10-11',
-          end: '2019-10-13'
-        },
-        {
-          title: 'Meeting',
-          start: '2019-10-12T10:30:00',
-          end: '2019-10-12T12:30:00'
-        },
-        {
-          title: 'Lunch',
-          start: '2019-10-12T12:00:00'
-        },
-        {
-          title: 'Meeting',
-          start: '2019-10-12T14:30:00'
-        },
-        {
-          title: 'Birthday Party',
-          start: '2019-10-13T07:00:00'
-        },
-        {
-          title: 'Click for Google',
-          url: 'http://google.com/',
-          start: '2019-10-28'
-        }
-      ]
-    });
-
-    calendar.render();
-  });
-
-</script>
 
 		 <div id='calendar'></div>
 		</div>
@@ -510,10 +443,87 @@ data-detail-view-icon="false" data-silent-sort="false">
   </body>
   
   <script>
+  
+  
+  var calendar;
+   document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      plugins: [ 'interaction', 'dayGrid', 'timeGrid' ],
+      defaultView: 'dayGridMonth',
+      defaultDate: '2019-10-07',
+      header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay'
+      },
+      events: [
+        {
+          title: 'Inhaled steroid therapy',
+          start: '2019-10-01'
+        },
+        {
+          title: 'Diabetic diet',
+          start: '2019-10-07',
+          end: '2019-12-10'
+        },
+        {
+          groupId: 'Asthma self management',
+          title: 'Inhaled steroid therapy',
+          start: '2019-10-09T10:00:00'
+        },
+        {
+          groupId: 'Asthma self management',
+          title: 'Inhaled steroid therapy',
+          start: '2019-10-16T10:00:00'
+        },
+      
+        {
+          groupId: 'Asthma self management',
+          title: 'Inhaled steroid therapy',
+          start: '2019-10-24T10:00:00'
+        },
+		{
+          groupId: 'Asthma self management',
+          title: 'Inhaled steroid therapy',
+          start: '2019-11-09T10:00:00'
+        },
+		{
+          groupId: 'Asthma self management',
+          title: 'Inhaled steroid therapy',
+          start: '2019-11-26T10:00:00'
+        },
+		{
+          groupId: 'Asthma self management',
+          title: 'Inhaled steroid therapy',
+          start: '2019-11-24T10:00:00'
+        }
+      ]
+    });
+	calendar.setOption('locale', 'es');
+    calendar.render();
+  });
+  
+  
+  
   var bundle;
   var grupo;
   var array2=[];
   var datosmed=[];
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   //var $tablemed = $('#tablemed');
 		var ctx = document.getElementById('myChart').getContext('2d');
      var chart = new Chart(ctx, {
@@ -798,6 +808,7 @@ function busca(){
 	  var grupo= [];
 	  var grupomed=[];
 	  var grupocui=[];
+	  var eventos=[];
 	  clientre.read({
       id: 'Patient/' + patientId +"/$everything?_count=500"
     }).then(function(pre) {
@@ -810,16 +821,23 @@ function busca(){
 		
               
 			  if (re.resource.resourceType == "CarePlan"){
-			  
+			  temp="{title: 'Long Event',start: '2019-11-30'}";
 			  datoscui.push(re)
 								//if(grupocui.indexOf(re.resource.category.coding.display)=== -1){
 								//var select = document.getElementById("medicamento");
 								//select.options[select.options.length] = new Option(re.resource.code.coding[0].display);
 				  				//}
 								//grupocui.push(re.resource.code.coding[0].display);
-			  
-			  
-			   careplani=careplani+1;
+								
+								//{
+								//title: 'Long Event',
+								//start: '2019-10-07',
+								//end: '2019-10-10'
+								//},
+			  //var temp="{title: '"+re.resource.activity[0].detail.code.coding[0].display +"', start: '"+re.resource.period.start+"'}"
+			  eventos.push(temp);
+			   
+			  careplani=careplani+1;
 			    
 			  }
 		
@@ -888,6 +906,20 @@ function busca(){
 	 $tablemed.bootstrapTable({data: datosmed});
 	 $table.bootstrapTable({data: datobs});
 	  $tablecui.bootstrapTable({data: datoscui});
+	  
+	 //temp="{title: 'Long Event',start: '2019-11-30'}";
+	  //eventos.push(temp);
+	  //calendar.events=temp;
+	  //calendar.render();
+	  
+	  // $('#calendar').calendarEl('renderEvent', {
+      //          title: 'Paln de cuidados',
+      //          start: 2019-11-30,
+      //          allDay: true
+      //        });
+			  
+	 //	    $('#calendar').fullCalendar('updateEvent', event);
+	     //calendar.render();
 	});
 }  
 
