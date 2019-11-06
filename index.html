@@ -84,7 +84,7 @@
     </tr>
 	<tr>
      <tr>
-      <td class="align-middle" style="text-align:center">BoD: </td>
+      <td class="align-middle" style="text-align:center">DoB: </td>
       <td id="bod" class="align-middle">...</td>
     </tr>
 	<tr>
@@ -141,7 +141,8 @@
       <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" id="list-home-list" data-toggle="list" href="#list-settings"  role="tab" aria-controls="home">Cuidados<span id="careplani" class="badge badge-dark badge-pill">0</span></a>
       <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Episodios<span id="encounteri" class="badge badge-dark badge-pill">0</span></a>
       <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">Medicación <span id="medicationi" class="badge badge-dark badge-pill">0</span></a>
-      <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" id="list-chart-list" data-toggle="list" href="#list-chart" role="tab">ePizarra<span id="charti"><img src="images/pizarra.png"></span></a>
+      <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" id="list-chart-list" data-toggle="list" href="#list-chart" role="tab">ePizarra-Lab<span id="charti"><img src="images/pizarra.png"></span></a>
+	  <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" id="list-date-list" data-toggle="list" href="#list-micro" role="tab">ePizarra-Micro<span id="datei"><img src="images/bio.png"></span></a>
 	  <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" id="list-date-list" data-toggle="list" href="#list-date" role="tab">eAgenda<span id="datei"><img src="images/agenda.png"></span></a>
 	</div>
   </div>
@@ -285,7 +286,7 @@ data-detail-view-icon="false" data-silent-sort="false">
 
 </div>
 	  <div class="tab-pane fade" id="list-chart" role="tabpanel" aria-labelledby="list-chart-list"><hr/>
-<h6 class="mb-3"><p id="patient_name"><img onclick="busca()" src="images/graph-4x.png">&nbsp;&nbsp;&nbsp;ePizarra
+<h6 class="mb-3"><p id="patient_name"><img onclick="busca()" src="images/graph-4x.png">&nbsp;&nbsp;&nbsp;ePizarra-Lab
 		
 	
 </p>
@@ -364,6 +365,37 @@ data-detail-view-icon="false" data-silent-sort="false">
 		 <div id='calendar'></div>
 		</div>
 
+<!-- antibiograma -->
+ <div class="tab-pane fade" id="list-micro" role="tabpanel" aria-labelledby="list-profile-list"><hr/>
+<h6 class="mb-3"><p id="patient_name"><img src="images/graph-4x.png">&nbsp;&nbsp;&nbsp;ePizarra-Micro</p>
+
+<img id="OrdenarA" src="images/sort-ascending-2x.png">&nbsp;
+	<img id="OrdenarD" src="images/sort-descending-2x.png">&nbsp;
+	<img id="removeDataset" src="images/delete-2x.png">&nbsp;&nbsp;&nbsp;
+	<!--<img id="addDataset" src="images/pencil-2x.png">&nbsp;&nbsp;&nbsp; -->
+	<img id="addDataset" src="images/micro-2x.png">&nbsp;<select id="organismo" onchange="addorganismo()" style="font-size:8pt; width:100px">
+	<option>Choose...</option>
+    <option selected value="Staphylococcus aureus">Staphylococcus aureus</option>
+    </select>
+
+</h6>
+
+
+			<div class="border border-primary">
+				
+				<div><canvas id="antibioChart"></canvas></div>
+			
+			</div>		
+
+
+
+
+
+</div>
+
+
+<!-- fin antibiograma -->
+
 </div>
 
 
@@ -383,7 +415,7 @@ data-detail-view-icon="false" data-silent-sort="false">
 	
 
 <hr/>
-<a href="javascript:location.reload(true)">Reset</a>
+<a href="javascript:location.reload(true)">Limpiar</a>
 <div id="accordion2">
   <div class="card border-primary sm-3" >
     <div class="card-header" id="headingOne">
@@ -1059,6 +1091,28 @@ function adddeterminacion() {
 			
 
 		};
+
+var chartData = {	
+			labels: ['Ampicillin', 'Cefazolin', 'Cefoxitin', 'Clindamycin', 'Daptomycin', 'Doxycycline','Erythromycin','Gentamicin','Levofloxacin','Linezolid','Moxifloxacin','Oxacillin','Penicillin','Quinupristin','Rifampin','Tetracycline','Sulfamethoxazole','Vancomycin'],
+			//xLabels:['','R','I','S'],
+			datasets: [{
+				//type: 'bar',
+				label: 'Organismo Positivo: Staphylococcus aureus ',
+				borderColor: 'blue',
+				borderWidth: 2,
+				data:[,2,4,0.5,1,0.5,8,2,0.5,4,0.5,0.5,2,0.5,0.5,0.5,0.0526,1]
+			}]};
+var ctx = document.getElementById('antibioChart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'horizontalBar',
+    data: chartData,
+	options:{
+		scales: {
+			yAxes: [{
+						type: 'category'}]
+				}
+            }	
+});
 
 </script>
 
