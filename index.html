@@ -369,10 +369,10 @@ data-detail-view-icon="false" data-silent-sort="false">
  <div class="tab-pane fade" id="list-micro" role="tabpanel" aria-labelledby="list-profile-list"><hr/>
 <h6 class="mb-3"><p id="patient_name"><img src="images/graph-4x.png">&nbsp;&nbsp;&nbsp;ePizarra-Micro</p>
 
-<img id="OrdenarA" src="images/sort-ascending-2x.png">&nbsp;
-	<img id="OrdenarD" src="images/sort-descending-2x.png">&nbsp;
-	<img id="removeDataset" src="images/delete-2x.png">&nbsp;&nbsp;&nbsp;
-	<!--<img id="addDataset" src="images/pencil-2x.png">&nbsp;&nbsp;&nbsp; -->
+    <img id="valor" src="images/bar-chart-2x.png">&nbsp;
+	<img id="sensible" src="images/pulse-2x.png">&nbsp;&nbsp;&nbsp;
+	<!--<img id="removeDataset" src="images/delete-2x.png">&nbsp;&nbsp;&nbsp;
+	<img id="addDataset" src="images/pencil-2x.png">&nbsp;&nbsp;&nbsp; -->
 	<img id="addDataset" src="images/micro-2x.png">&nbsp;<select id="organismo" onchange="addorganismo()" style="font-size:8pt; width:100px">
 	<option>Choose...</option>
     <option selected value="Staphylococcus aureus">Staphylococcus aureus</option>
@@ -1112,6 +1112,58 @@ var myChart = new Chart(ctx, {
 						type: 'category'}]
 				}
             }	
+});
+
+document.getElementById('sensible').addEventListener('click', function() {
+
+var chartData = {	
+			xLabels: ['Ampicillin', 'Cefazolin', 'Cefoxitin', 'Clindamycin', 'Daptomycin', 'Doxycycline','Erythromycin','Gentamicin','Levofloxacin','Linezolid','Moxifloxacin','Oxacillin','Penicillin','Quinupristin','Rifampin','Tetracycline','Sulfamethoxazole','Vancomycin'],
+			yLabels:['Resistente','Intermedio','Sensible',''],
+			datasets: [{
+				label: 'Organismo Positivo: Staphylococcus aureus ',
+				borderColor: 'blue',
+				borderWidth: 2,
+				data:['Resistente','Sensible','Sensible','Sensible','Sensible','Sensible','Sensible','Sensible','Resistente','Sensible','Sensible','Sensible','Sensible','Sensible','Resistente','Sensible','Sensible','Sensible','Sensible','Sensible']
+			}]};
+
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: chartData,
+	options:{
+		scales: {
+			yAxes: [{
+						type: 'category'}]
+				}
+            }	
+});
+
+
+myChart.update();
+});
+
+
+document.getElementById('valor').addEventListener('click', function() {
+var chartData = {	
+			labels: ['Ampicillin', 'Cefazolin', 'Cefoxitin', 'Clindamycin', 'Daptomycin', 'Doxycycline','Erythromycin','Gentamicin','Levofloxacin','Linezolid','Moxifloxacin','Oxacillin','Penicillin','Quinupristin','Rifampin','Tetracycline','Sulfamethoxazole','Vancomycin'],
+			datasets: [{
+				label: 'Organismo Positivo: Staphylococcus aureus ',
+				borderColor: 'blue',
+				borderWidth: 2,
+				data:[,2,4,0.5,1,0.5,8,2,0.5,4,0.5,0.5,2,0.5,0.5,0.5,0.0526,1]
+			}]};
+
+var myChart = new Chart(ctx, {
+    type: 'horizontalBar',
+    data: chartData,
+	options:{
+		scales: {
+			yAxes: [{
+						type: 'category'}]
+				}
+            }	
+});
+
+myChart.update();
 });
 
 </script>
