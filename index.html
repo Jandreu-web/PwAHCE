@@ -18,7 +18,7 @@
   
 <script data-require="jquery@*" data-semver="2.1.1" src="js/jquery-3.4.1.min.js"></script>
 <script data-require="jqFhir@0.0.5" data-semver="0.0.5" src="js/jqFhir.js"></script>
-
+<script type="text/javascript" src="js/loader.js"></script>
  <script src="Chart.bundle.js"></script>
 
    <style>
@@ -70,8 +70,8 @@
 		<img onclick="busca()" src="images/person-4x.png">
         <button  class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne"><p id="patient_name" class="font-weight-bold">Seleccione Fhir Server</p>
         </button>
-		
-      </h5>
+	  </h5>
+	
     </div>
 
     <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
@@ -103,15 +103,23 @@
       <td class="align-middle" style="text-align:center">ID: </td>
       <td id="idi" class="align-middle">...</td>
     </tr>
+	
   </tbody>
 </table>
-	  
-	  
-	  
+<br/>
+	&nbsp;&nbsp;&nbsp;<img src="images/calendar-4x.png"> &nbsp;&nbsp;<a href="timeline/timeline.html" target="_blank">Patient Time-Line</a>
+
+ 
        </div>
+   	   
     </div>
-  </div>
+
 	
+  </div>
+ <hr/>	
+	
+
+
 <!--	
 <ul class="list-group mb-3">
   <li class="list-group-item   d-flex justify-content-between align-items-center">
@@ -179,6 +187,7 @@ options="thead-light" data-id-field="resource.code.coding.0.display" data-silent
      </tr>
   </thead>
 </table>
+
 </div>
 
 <script>
@@ -418,7 +427,7 @@ data-detail-view-icon="false" data-silent-sort="false">
 			<div class="border border-primary">
 				
 			<ul class="list list-flush" id="QR"/>
-			
+	
 			</div>		
 
 
@@ -441,15 +450,13 @@ data-detail-view-icon="false" data-silent-sort="false">
 
 	
 	
-	  
-	  
-	  
 	
 
 	
 
 <hr/>
 <a href="javascript:location.reload(true)">Limpiar</a>
+
 <div id="accordion2">
   <div class="card border-primary sm-3" >
     <div class="card-header" id="headingOne">
@@ -481,9 +488,10 @@ data-detail-view-icon="false" data-silent-sort="false">
   </div>
 </form>
   
-	  
+
        </div>
     </div>
+	
   </div>
 
 
@@ -1254,7 +1262,7 @@ function getGET()
         }
     }
 
-
+  
 </script>
 
 </html>
