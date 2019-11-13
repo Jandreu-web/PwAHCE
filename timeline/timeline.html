@@ -1,0 +1,141 @@
+<html>
+  <head>
+    <!--<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> -->
+	<script type="text/javascript" src="js/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['timeline']});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var container = document.getElementById('timeline');
+        var chart = new google.visualization.Timeline(container);
+        var dataTable = new google.visualization.DataTable();
+
+        dataTable.addColumn({ type: 'string', id: 'Position' });
+		dataTable.addColumn({ type: 'string', id: 'Name' });
+        dataTable.addColumn({ type: 'date', id: 'Start' });
+        dataTable.addColumn({ type: 'date', id: 'End' });
+        dataTable.addRows([
+          [ 'Encounter','Outpatient', new Date(2017, 2, 19), new Date(2017, 2, 19) ],
+		  [ 'Encounter','Outpatient', new Date(2016, 1, 5), new Date(2016, 1, 5) ],
+	      [ 'Encounter','Outpatient', new Date(2014, 12, 12),  new Date(2014, 12, 12) ],
+          [ 'Encounter','Outpatient', new Date(2014, 1, 19),  new Date(2014, 1, 19) ],
+		  [ 'Encounter','Outpatient', new Date(2013, 2, 15),  new Date(2013, 2, 15) ],
+		  [ 'Encounter','Outpatient', new Date(2011, 5, 4),  new Date(2011, 5, 4) ],
+		  [ 'Encounter','Outpatient', new Date(2009, 9, 4),  new Date(2009, 9, 4)],
+		  [ 'Encounter','Inpatient', new Date(2013, 3, 7),  new Date(2013, 3, 7)],
+		  [ 'Encounter','Symptom Streptococcal sore throat (disorder)', new Date(2016, 6, 11),  new Date(2016, 6, 11)],
+		  [ 'Encounter','Symptom Acute bronchitis (disorder)', new Date(2009, 3, 4), new Date(2009, 3, 4)],
+		  [ 'Encounter','Check-up', new Date(2017, 6, 20), new Date(2017, 6, 20)],
+		  [ 'Encounter','Check-up', new Date(2012, 6, 20), new Date(2012, 6, 20)],
+
+		  [ 'Condition','Streptococcal sore throat (disorder)',new Date(2016, 6, 9), new Date(2016, 6, 9) ],
+          [ 'Condition', 'Impacted molars', new Date(2013, 3, 7), new Date(2013, 3, 7) ],
+          [ 'Condition', 'Prediabetes', new Date(2013, 2, 14), new Date(2013, 2, 14) ],
+		  [ 'Condition','Acute bronchitis (disorder)',new Date(2009, 3, 4), new Date(2009, 3, 4) ],
+
+
+          [ 'Obs-Laboratory','Carbon Dioxide',new Date(2017, 2, 19),new Date(2017, 2, 19) ],
+		  [ 'Obs-Laboratory','Carbon Dioxide',new Date(2016, 1, 5),new Date(2016, 1, 5) ],
+		  [ 'Obs-Laboratory','Carbon Dioxide',new Date(2014, 12, 12),new Date(2014, 12, 12) ],
+		  [ 'Obs-Laboratory','Carbon Dioxide',new Date(2013, 2, 15),new Date(2013, 2, 15) ],
+		  
+		  [ 'Obs-Laboratory','Sodium',new Date(2017, 2, 19),new Date(2017, 2, 20) ],
+		  [ 'Obs-Laboratory','Sodium',new Date(2016, 1, 5),new Date(2016, 1, 6) ],
+		  [ 'Obs-Laboratory','Sodium',new Date(2014, 12, 12),new Date(2014, 12, 13) ],
+		  [ 'Obs-Laboratory','Sodium',new Date(2013, 2, 15),new Date(2013, 2, 16) ],
+		  
+		  [ 'Obs-Laboratory','Calcium',new Date(2017, 2, 19),new Date(2017, 2, 20) ],
+		  [ 'Obs-Laboratory','Calcium',new Date(2016, 1, 5),new Date(2016, 1, 6) ],
+		  [ 'Obs-Laboratory','Calcium',new Date(2014, 12, 12),new Date(2014, 12, 13) ],
+		  [ 'Obs-Laboratory','Calcium',new Date(2013, 2, 15),new Date(2013, 2, 16) ],
+		  
+		  [ 'Obs-Laboratory','Creatinine',new Date(2017, 2, 19),new Date(2017, 2, 20) ],
+		  [ 'Obs-Laboratory','Creatinine',new Date(2016, 1, 5),new Date(2016, 1, 6) ],
+		  [ 'Obs-Laboratory','Creatinine',new Date(2014, 12, 12),new Date(2014, 12, 13) ],
+		  [ 'Obs-Laboratory','Creatinine',new Date(2013, 2, 15),new Date(2013, 2, 16) ],
+		  
+		  [ 'Obs-Laboratory','Glucose',new Date(2017, 2, 19),new Date(2017, 2, 20) ],
+		  [ 'Obs-Laboratory','Glucose',new Date(2016, 1, 5),new Date(2016, 1, 6) ],
+		  [ 'Obs-Laboratory','Glucose',new Date(2014, 12, 12),new Date(2014, 12, 13) ],
+		  [ 'Obs-Laboratory','Glucose',new Date(2013, 2, 15),new Date(2013, 2, 16) ],
+		  
+		  [ 'Obs-Laboratory','Urea Nitrogen',new Date(2017, 2, 19),new Date(2017, 2, 20) ],
+		  [ 'Obs-Laboratory','Urea Nitrogen',new Date(2016, 1, 5),new Date(2016, 1, 6) ],
+		  [ 'Obs-Laboratory','Urea Nitrogen',new Date(2014, 12, 12),new Date(2014, 12, 13) ],
+		  [ 'Obs-Laboratory','Urea Nitrogen',new Date(2013, 2, 15),new Date(2013, 2, 16) ],
+
+ 		 
+		  [ 'Obs-Laboratory','Total Cholesterol',new Date(2017, 2, 19),new Date(2017, 2, 19) ],
+		  [ 'Obs-Laboratory','Total Cholesterol',new Date(2013, 2, 5),new Date(2013, 2, 5) ],
+		  [ 'Obs-Laboratory','Total Cholesterol',new Date(2009, 4, 9),new Date(2009, 4, 9) ],
+	
+		 
+		  [ 'Obs-Laboratory','Low Density Lipoprotein Cholesterol',new Date(2017, 2, 19),new Date(2017, 2, 20) ],
+		  [ 'Obs-Laboratory','Low Density Lipoprotein Cholesterol',new Date(2013, 2, 15),new Date(2013, 2, 16) ],
+		  [ 'Obs-Laboratory','Low Density Lipoprotein Cholesterol',new Date(2009, 4, 9),new Date(2009, 4, 10) ],
+
+	      [ 'Obs-Laboratory','High Density Lipoprotein Cholesterol',new Date(2017, 2, 19),new Date(2017, 2, 19) ],
+		  [ 'Obs-Laboratory','High Density Lipoprotein Cholesterol',new Date(2013, 2, 15),new Date(2013, 2, 15) ],
+		  [ 'Obs-Laboratory','High Density Lipoprotein Cholesterol',new Date(2009, 4, 9),new Date(2009, 4, 9) ],
+		  
+		  [ 'Obs-Laboratory','Triglycerides',new Date(2017, 2, 19),new Date(2017, 2, 19) ],
+		  [ 'Obs-Laboratory','Triglycerides',new Date(2013, 2, 15),new Date(2013, 2, 15) ],
+		  [ 'Obs-Laboratory','Triglycerides',new Date(2009, 4, 9),new Date(2009, 4, 9) ],
+	 
+		 
+		  [ 'Obs-Vital Sings','Body Mass',new Date(2017, 2, 19),new Date(2017, 2, 19) ],
+		  [ 'Obs-Vital Sings','Body Mass',new Date(2016, 5, 1),new Date(2016, 5, 1) ],
+		  [ 'Obs-Vital Sings','Body Mass',new Date(2014, 1, 19),new Date(2014, 1, 19) ],
+		  [ 'Obs-Vital Sings','Body Mass',new Date(2014, 12, 12),new Date(2014, 12, 12) ],
+		  [ 'Obs-Vital Sings','Body Mass',new Date(2013, 2, 15),new Date(2013, 2, 15) ],
+		  [ 'Obs-Vital Sings','Body Mass',new Date(2011, 4, 5),new Date(2011, 4, 5) ],
+		  [ 'Obs-Vital Sings','Body Mass',new Date(2009, 9, 4),new Date(2009, 9, 4) ],
+
+
+		  [ 'Medication','Penicillin V Potassium 500 MG',new Date(2018, 4, 10), new Date(2018, 6, 10) ],
+          [ 'Medication', 'Acetaminophen 160 MG', new Date(2018, 4, 10), new Date(2018, 8, 11) ],
+          [ 'Medication', 'Penicillin V Potassium 250 MG', new Date(2017, 4, 10), new Date(2018, 8, 11)  ],
+		  [ 'Medication','Acetaminophen 300 MG / HYDROcodone Bitartrate 5 MG [Vicodin]',new Date(2017, 4, 10), new Date(2018, 8, 11) ],
+          
+			
+		  [ 'CarePlan','Respiratory therapy',new Date(2009, 3, 4), new Date(2009, 4, 9) ],
+          [ 'CarePlan', 'Smoking cessation therapy',     new Date(2009, 3, 4),  new Date(2009, 4, 9) ],
+          [ 'CarePlan', 'Recommendation to avoid exercise', new Date(2009, 3, 4),  new Date(2009, 4, 9) ],
+		  [ 'CarePlan','Deep breathing and coughing exercises', new Date(2009, 3, 4),  new Date(2009, 4, 9) ],
+          [ 'CarePlan', 'Diabetic diet',     new Date(2013, 2, 14),new Date(2019, 4, 9) ],
+		  [ 'CarePlan', 'Exercise therapy',     new Date(2013, 2, 14),new Date(2019, 4, 9) ]
+		  ]);
+			 var options = {
+					timeline: { showRowLabels: true,
+								groupByRowLabel: true,
+								rowLabelStyle: {fontName: 'Arial', fontSize: 24},
+								barLabelStyle: { fontName: 'Arial', fontSize: 14 }
+		},
+        avoidOverlappingGridLines: false
+		
+      };
+
+
+		
+        chart.draw(dataTable);
+      }
+    </script>
+  </head>
+  <body>
+   
+	
+	
+	
+
+  
+   <div id="timeline" style="height: 750px; width:800"></div>
+ 
+  
+
+	
+	
+	
+	
+	
+  </body>
+</html>
