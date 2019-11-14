@@ -18,7 +18,7 @@
   
 <script data-require="jquery@*" data-semver="2.1.1" src="js/jquery-3.4.1.min.js"></script>
 <script data-require="jqFhir@0.0.5" data-semver="0.0.5" src="js/jqFhir.js"></script>
-<script type="text/javascript" src="js/loader.js"></script>
+<!--<script type="text/javascript" src="js/loader.js"></script>-->
  <script src="Chart.bundle.js"></script>
 
    <style>
@@ -1045,7 +1045,12 @@ function functionactualiza(){
 	  var cipa;
 	  
 	  sel=document.getElementById('inlineFormCustomSelectPref');
-	  formatted=formatted
+	 
+	  
+	  	if (nombre!="1") {
+		formatted=nombre;
+		}else{formatted=formatted;}
+	  
 	  $("#system_name").text(sel.options[sel.selectedIndex].text);
       $("#patient_name").text(formatted);
 	  $("#gender").text(gender);
@@ -1234,6 +1239,7 @@ function getGET()
  // parametros desde QR
  // Centro: Ubicacion: Sala: Turno: Nombre: Fecha: Hora:
  var mensaje="";
+ var nombre="1";
     window.onload = function()
     {
         // Cogemos los valores pasados por get
@@ -1252,6 +1258,9 @@ function getGET()
             }
 		document.getElementById("QR").innerHTML = mensaje;
 	    $('#list-tab a:last-child').tab('show');
+	
+		nombre=valores["Nombre"];
+		
 
         }else{
             // no se ha recibido ningun parametro por GET
