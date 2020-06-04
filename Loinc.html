@@ -898,11 +898,11 @@ function busca(){
 
 	var clientre = jqFhir({ baseUrl: document.getElementById('inlineFormCustomSelectPref').value,
 							auth: {
-							bearer: 'token',
+							//bearer: 'token',
 							// OR for basic auth
 							user: 'joselandreu',
 							pass: 'Maximo111'},
-							//credentials: 'same-origin',
+							credentials: 'include',
 						   headers: {
 						    'Access-Control-Allow-Origin':'*',
 							'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
