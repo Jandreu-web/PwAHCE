@@ -898,16 +898,21 @@ function busca(){
 
 	var clientre = jqFhir({ baseUrl: document.getElementById('inlineFormCustomSelectPref').value,
 							auth: {
-							bearer: 'token',
+							//bearer: 'token',
 							// OR for basic auth
 							user: 'joselandreu',
 							pass: 'Maximo111'},
 							credentials: 'include',
 						   headers: {
-						//	'X-Custom-Header': 'Custom Value',
-						//	'X-Another-Custom': 'Another Value',
-						     'Access-Control-Allow-Origin:*':'*'}
+						    'Access-Control-Allow-Origin':'*',
+							'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
+						    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE'
+						    //'X-Another-Custom': 'Another Value'
+						     }
 						}),
+						
+						//Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept"
+						//'Access-Control-Allow-Methods: GET, POST, PUT, DELETE');
       patientId = document.getElementById('inlineFormInputName2').value;
 	  var careplani=0;
 	  var medicationi=0;
