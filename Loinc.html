@@ -1,0 +1,1336 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+<meta charset="utf-8">
+<!--<link rel="manifest" href="manifest.json"> -->
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Registros de Salud">
+<!--<link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-iconn.png"/> -->
+<link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon2.png"/>
+
+		
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="bootstrap.min.css">
+  </head>
+  
+<script data-require="jquery@*" data-semver="2.1.1" src="js/jquery-3.4.1.min.js"></script>
+<script data-require="jqFhir@0.0.5" data-semver="0.0.5" src="js/jqFhir.js"></script>
+<!--<script type="text/javascript" src="js/loader.js"></script>-->
+ <script src="Chart.bundle.js"></script>
+
+   <style>
+
+    
+
+    #calendar {
+      max-width: 1200px;
+      margin: 40px auto;
+	  margin: 0;
+      padding: 0;
+      font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+      font-size: 9px;
+    }
+
+  </style>
+
+  
+<body>
+  
+ 
+<div class="container-fluid">  
+<nav class="navbar  navbar-expand-lg navbar-dark bg-primary">
+   <a class="navbar-brand" href="#"><img src="images/loinc/termi-40x.png">&nbsp;&nbsp;&nbsp;<b id="system_name" class="font-weight-bold">S. Terminología.</b></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Fhir Client V.0</a>
+      </li>
+       
+    </ul>
+    
+  </div>
+</nav>
+ <hr/>
+
+	
+	<div id="accordion">
+  <div class="card border-primary mb-3" >
+    <div class="card-header" id="headingOne">
+      <h5 class="mb-3">
+		<img onclick="busca()" src="images/account-login-4x.png">
+        <button  class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne"><p id="patient_name" class="font-weight-bold">Nomenclatura<td id="gender" class="align-left">&nbsp;&nbsp;[<img src="images/loinc/loinc-30x.png"><img src="images/loinc/snomed-30x.png"><img src="images/loinc/cie.png"></td>]</p>
+        </button>
+		
+	  </h5>
+
+    </div>
+
+    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+      <div class="card-body">
+				<table>
+				
+	<!--
+	<span class="badge badge-success">Success</span>
+<span class="badge badge-danger">Danger</span>
+<span class="badge badge-warning">Warning</span>
+	-->
+  <tbody>
+ <!--  <tr>
+      <td class="align-left" style="text-align:left"><img src="images/6sigamicon.png">&nbsp;<strong><b>6 Sigma Level</b></strong></td>
+      <td id="gender" class="align-middle"><h2><span class="badge badge-pill badge-success">5</span></h2></td>
+    </tr>-->
+    <tr>
+	 
+	 <select class="selectpicker show-tick" data-style="btn-primary mb-3">
+  <option>...</option>
+  <option>Loinc</option>
+  <option>Snomed</option>
+  <option>CIE-9</option>
+  <option>CIE-10</option>
+</select>
+
+      
+    </tr>
+	 <!--<tr>
+     <tr>
+      <td id="gender" class="align-left"><img src="images/loinc/snomed-30x.png"><strong><b>&nbsp;Snomed:&nbsp;</b></strong></td>
+    </tr>
+	<tr>
+        <td id="gender" class="align-left"><img src="images/loinc/cie.png"><strong><b>&nbsp;CIE-9:&nbsp;</b></strong></td>
+    </tr>
+	<tr>
+        <td id="gender" class="align-left"><img src="images/loinc/cie.png"><strong><b>&nbsp;CIE-10:&nbsp;</b></strong></td>
+    </tr>
+	<tr>
+      <td class="align-left" style="text-align:left">Lab. Bioquímica y Hematología HGUGM:&nbsp;</td>
+      <td id="addr" class="align-middle">&nbsp;<span  class="badge badge-danger badge-pill">0.0</span></td>
+    </tr>
+	<tr>
+      <td class="align-left" style="text-align:left">Lab. Micro HGUGM:&nbsp;</td>
+      <td id="pobx" class="align-middle">&nbsp;<span  class="badge badge-danger badge-pill">0.0</span></td>
+    </tr>
+	<tr>
+      <td class="align-left" style="text-align:left">Lab. Genética HGUGM:&nbsp;</td>
+      <td id="idi" class="align-middle">&nbsp;<span  class="badge badge-danger badge-pill">0.0</span></td>
+    </tr> -->
+	
+  </tbody>
+</table>
+<!--<br/>
+	&nbsp;&nbsp;&nbsp;<img src="images/calendar-4x.png"> &nbsp;&nbsp;<a href="timeline/timeline.html" target="_blank">Patient Time-Line</a> -->
+
+ 
+       </div>
+   	   
+    </div>
+
+	
+  </div>
+ <hr/>	
+	
+
+
+<!--	
+<ul class="list-group mb-3">
+  <li class="list-group-item   d-flex justify-content-between align-items-center">
+    Care Plan
+    <span id="careplani" class="badge badge-primary badge-pill">0</span>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    Encounter
+    <span id="encounteri" class="badge badge-primary badge-pill">0</span>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    Medication
+    <span id="medicationi" class="badge badge-primary badge-pill">0</span>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    Observation
+    <span id="observationi" class="badge badge-primary badge-pill">0</span>
+  </li>
+</ul> -->
+	
+
+
+<div class="row">
+  <div class="col">
+    <div class="list-group border border-primary" id="list-tab" role="tablist">
+	  <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" id="list-settings-list" data-toggle="list"  href="#list-home" role="tab" aria-controls="settings">Buscar<span id="observationi" class="badge badge-dark badge-pill">0</span></a>
+    <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" id="list-home-list" data-toggle="list" href="#list-settings"  role="tab" aria-controls="home">Validar<span id="careplani" class="badge badge-dark badge-pill">0</span></a>
+      <!--  <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Episodios<span id="encounteri" class="badge badge-dark badge-pill">0</span></a>
+      <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">Medicación <span id="medicationi" class="badge badge-dark badge-pill">0</span></a> 
+      <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" id="list-chart-list" data-toggle="list" href="#list-chart" role="tab">ePizarra<span id="charti"><img src="images/pizarra.png"></span></a>-->
+	<!-- <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" id="list-date-list" data-toggle="list" href="#list-micro" role="tab">ePizarra-Micro<span id="datei"><img src="images/bio.png"></span></a>
+	  <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" id="list-date-list" data-toggle="list" href="#list-date" role="tab">eAgenda<span id="datei"><img src="images/agenda.png"></span></a>
+	  <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" id="list-date-list" data-toggle="list" href="#list-turno" role="tab">eTurno<span id="datei"><img src="images/kiosko-2x.png"></span></a> -->
+	</div>
+  </div>
+</div>  
+  <div class="col">
+    <div class="tab-content border-primary" id="nav-tabContent">
+      <div class="tab-pane fade" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
+	  
+<link href="https://unpkg.com/bootstrap-table@1.15.4/dist/bootstrap-table.min.css" rel="stylesheet">
+<script src="https://unpkg.com/bootstrap-table@1.15.4/dist/bootstrap-table.min.js"></script>
+   
+   
+   
+  
+
+<hr/>
+<h6 class="mb-3"><p><img src="images/document-4x.png">&nbsp;&nbsp;&nbsp;Buscar &nbsp;<p id="hospiname1"></p><!--<p>&nbsp;&nbsp;&nbsp;CDA &nbsp;&nbsp;<a href="CDA/cda.zip" target="_blank"><img src="images/data-transfer-download-2x.png"></a>&nbsp;<a href="CDA/cdareportlab.xml" target="_blank"><img src="images/file-2x.png"></a></p> --></h6>
+
+<!--<button type="button" class="btn btn-outline-light" data-toggle="modal" data-target="#myModal"><img src="images/document-4x.png"></button> -->
+
+<div class="table-responsive-sm border border-primary" style="height: 250px; overflow-y: scroll;">
+<table  class="table table-responsive-sm datatable table-sm table-striped table-hover  mx-auto w-auto" id="table" 
+options="thead-light" data-id-field="resource.code.coding.0.display" data-silent-sort="false"> 
+ 
+<!--data-height="150"  "-->
+
+  <thead>
+    <tr>
+      <th data-field="resource.code.coding.0.display" data-sortable="true">Nombre</th>
+      <th data-field="resource.valueQuantity.value" data-sortable="true">Valor</th>
+	  <th data-field="resource.effectiveDateTime" data-sortable="true">Fecha</th>
+	  <!-- <th data-field="resource.effectiveDateTime" data-sortable="true" data-value-type="inline-line">inline-line</th>-->
+     </tr>
+  </thead>
+</table>
+
+</div>
+
+<script>
+  var $table = $('#table')
+
+ // $(function() {
+ //   var data = [
+    
+  //  ]
+  //  $table.bootstrapTable({data: data})
+ // })
+</script>
+
+	  
+	  </div>
+      <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list"><hr/>
+<h6 class="mb-3"><p id="patient_name"><img onclick="busca()" src="images/document-4x.png">&nbsp;&nbsp;&nbsp;Episodios</p></h6></div>
+      <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list"><hr/>
+<h6 class="mb-3"><p id="patient_name"><img onclick="busca()" src="images/document-4x.png">&nbsp;&nbsp;&nbsp;Medicación</p></h6>
+<link href="https://unpkg.com/bootstrap-table@1.15.4/dist/bootstrap-table.min.css" rel="stylesheet">
+<script src="https://unpkg.com/bootstrap-table@1.15.4/dist/bootstrap-table.min.js"></script>
+	<div class="table-responsive-sm border border-primary" style="height: 250px; overflow-y: scroll;">
+<table  class="table table-responsive-sm datatable table-sm table-striped table-hover  mx-auto w-auto" id="tabla" 
+options="thead-light"  data-silent-sort="false"> 
+ 
+<!--data-height="150"  "-->
+
+  <thead>
+    <tr>
+      <th data-field="resource.code.coding.0.display" data-sortable="true">Farmaco</th>
+   	  <th data-field="resource.meta.lastUpdated" data-sortable="true">Fecha</th>
+	  <!-- <th data-field="resource.effectiveDateTime" data-sortable="true" data-value-type="inline-line">inline-line</th>-->
+     </tr>
+  </thead>
+</table>
+</div>
+
+<script>
+  var $tablemed = $('#tabla');
+
+ // $(function() {
+ //   var data = [
+    
+  //  ]
+  //  $table.bootstrapTable({data: data})
+ // })
+</script>
+
+
+
+</div>
+      <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list"><hr/>
+<h6 class="mb-3"><p id="patient_name"><img onclick="busca()" src="images/document-4x.png">&nbsp;&nbsp;&nbsp;Cuidados</p></h6>
+
+<link href="https://unpkg.com/bootstrap-table@1.15.4/dist/bootstrap-table.min.css" rel="stylesheet">
+<script src="https://unpkg.com/bootstrap-table@1.15.4/dist/bootstrap-table.min.js"></script>
+	<div class="table-responsive-sm border border-primary" style="height: 250px; overflow-y: scroll;">
+<table  class="table table-responsive-sm datatable table-sm table-striped table-hover  mx-auto w-auto" id="tablacui" 
+options="thead-light" 
+data-detail-view="true"
+data-detail-view-by-click="true"
+data-detail-view-icon="false" data-silent-sort="false"> 
+ 
+<!--data-height="150"  "-->
+
+  <thead>
+    <tr>
+      <!--<th data-field="resource.category.coding.display" data-sortable="true">Categoría</th>-->
+	   <th data-field="resource.category.0.coding.0.display"  data-sortable="true">Categoría</th>
+   	  <!-- <th data-field="resource.activity.0.detail.code.coding.0.display" data-detail-formatter="Detalleactividad" data-sortable="true">Actividad</th> -->
+	   <th data-field="resource.activity.0.detail.code.coding.0.display" data-sortable="true">Actividad</th>
+	   <th data-field="resource.period.start" data-sortable="true">Inicio</th>
+	   <th data-field="resource.period.end" data-sortable="true">Fin</th>
+   	   <th data-field="resource.activity.0.detail.status" data-sortable="true">Estado</th>
+	  <!-- <th data-field="resource.effectiveDateTime" data-sortable="true" data-value-type="inline-line">inline-line</th>-->
+     </tr>
+  </thead>
+</table>
+</div>
+
+<script>
+  var $tablecui = $('#tablacui');
+
+ // $(function() {
+ //   var data = [
+    
+  //  ]
+  //  $table.bootstrapTable({data: data})
+ // })
+ detalle="hola"
+ function Detalleactividad(index, row) {
+ 
+	//	for(i=0;i < actividad.length;i++){
+	//	detalle=
+		//JSON.stringify(actividad[0].deta
+	//	detalle=detalle+" "+detalle;
+	//	}
+ 
+	return '.Actividad'
+    //return index + '. Item ID: ' + row.id
+  }
+
+</script>
+
+
+
+</div>
+	  <div class="tab-pane fade" id="list-chart" role="tabpanel" aria-labelledby="list-chart-list"><hr/>
+<h6 class="mb-3"><p id="patient_name"><img onclick="busca()" src="images/graph-4x.png">&nbsp;&nbsp;ePizarra&nbsp;<p id="hospiname">
+		
+	
+</p>
+<img id="OrdenarA" src="images/sort-ascending-2x.png">&nbsp;
+	<img id="OrdenarD" src="images/sort-descending-2x.png">&nbsp;
+	<img id="removeDataset" src="images/delete-2x.png">&nbsp;&nbsp;&nbsp;
+	<!--<img id="addDataset" src="images/pencil-2x.png">&nbsp;&nbsp;&nbsp; -->
+	<!--<img id="addDataset" src="images/pildora-2x.png">&nbsp;<select id="medicamento" onchange="addmedicamento()" style="font-size:8pt; width:100px">
+    <option>...</option>
+ 
+    </select> -->
+<img id="addDataset" src="images/bar-chart-2x.png">&nbsp;<select id="determinacion" onchange="adddeterminacion()" style="font-size:8pt; width:100px">
+   <option>...</option>
+  
+  </select>
+
+</h6>
+<!-- <div class="bs-example">
+	
+    <div class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown"> <img id="addDataset" src="images/pildora-2x.png">&nbsp;Medicamento</a>
+        <div class="dropdown-menu">
+            <a onclick="addmedicamento()" class="dropdown-item">Amlodipine 5 MG Oral Tablet</a>
+            <a onclick="addmedicamento()"class="dropdown-item">Amlodipine 5 MG Oral Tablet</a>
+        </div>
+    </div>
+
+<div class="bs-example">
+    <div class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown"><img id="addDataset" src="images/jerin-2x.png">&nbsp;Determinación</a>
+        <div class="dropdown-menu">
+           <a onclick="addmedicamento()" class="dropdown-item">Albúmina</a>
+           <a onclick="addmedicamento()" class="dropdown-item">GPT</a>
+		   <a onclick="addmedicamento()" class="dropdown-item">GOT</a>
+           <a onclick="addmedicamento()" class="dropdown-item">Bilirrubina total</a>
+		   <a onclick="addmedicamento()" class="dropdown-item">Creatinina plasmática</a>
+           <a onclick="addmedicamento()" class="dropdown-item">I.N.R.</a>
+        </div>
+    </div>
+</div> -->
+
+
+
+			<div class="border border-primary">
+
+			
+			
+				<div class="row">
+					<div class="col-sm">
+				<div class="col-15"><canvas id="myChart"></canvas></div>
+				
+	
+				
+				</div>
+
+			
+		</div>	
+			
+	</div>		
+		
+
+			
+			</div>
+
+		<div class="tab-pane fade" id="list-date" role="tabpanel" aria-labelledby="list-profile-list"><hr/>
+		<h6 class="mb-3"><p id="patient_name"><img onclick="busca()" src="images/calendar-4x.png">&nbsp;&nbsp;&nbsp;eAgenda</p></h6>
+<link href='packages/core/main.css' rel='stylesheet' />
+<link href='packages/daygrid/main.css' rel='stylesheet' />
+<link href='packages/timegrid/main.css' rel='stylesheet' />
+<script src='packages/core/main.js'></script>
+<script src='packages/interaction/main.js'></script>
+<script src='packages/daygrid/main.js'></script>
+<script src='packages/timegrid/main.js'></script>
+
+
+		 <div id='calendar'></div>
+		</div>
+
+<!-- antibiograma -->
+ <div class="tab-pane fade" id="list-micro" role="tabpanel" aria-labelledby="list-profile-list"><hr/>
+<h6 class="mb-3"><p id="patient_name"><img src="images/graph-4x.png">&nbsp;&nbsp;&nbsp;ePizarra-Micro</p>
+
+    <img id="valor" src="images/bar-chart-2x.png">&nbsp;
+	<img id="sensible" src="images/pulse-2x.png">&nbsp;&nbsp;&nbsp;
+	<!--<img id="removeDataset" src="images/delete-2x.png">&nbsp;&nbsp;&nbsp;
+	<img id="addDataset" src="images/pencil-2x.png">&nbsp;&nbsp;&nbsp; -->
+	<img id="addDataset" src="images/micro-2x.png">&nbsp;<select id="organismo" onchange="addorganismo()" style="font-size:8pt; width:100px">
+	<option>Choose...</option>
+    <option selected value="Staphylococcus aureus">Staphylococcus aureus</option>
+    </select>
+
+</h6>
+
+
+			<div class="border border-primary">
+				
+				<div><canvas id="antibioChart"></canvas></div>
+			
+			</div>		
+
+
+
+
+
+</div>
+
+
+<!-- fin antibiograma -->
+
+
+<!-- turno -->
+
+<div class="tab-pane fade" id="list-turno" role="tabpanel" aria-labelledby="list-profile-list"><hr/>
+<h6 class="mb-3"><p id="patient_name"><img src="images/ticket-4x.png">&nbsp;&nbsp;&nbsp;eTurno</p>
+
+    <!--<img id="valor" src="images/bar-chart-2x.png">&nbsp;
+	<img id="sensible" src="images/pulse-2x.png">&nbsp;&nbsp;&nbsp;
+	<img id="removeDataset" src="images/delete-2x.png">&nbsp;&nbsp;&nbsp;
+	<img id="addDataset" src="images/pencil-2x.png">&nbsp;&nbsp;&nbsp; 
+	<img id="addDataset" src="images/micro-2x.png">&nbsp;<select id="organismo" onchange="addorganismo()" style="font-size:8pt; width:100px">
+	<option>Choose...</option>
+    <option selected value="Staphylococcus aureus">Staphylococcus aureus</option>
+    </select>-->
+
+</h6>
+
+
+			<div class="border border-primary">
+				
+			<ul class="list list-flush" id="QR"/>
+	
+			</div>		
+
+
+
+
+
+</div>
+
+<!-- turno -->
+
+
+</div>
+
+
+
+    </div>
+
+  </div>
+
+
+	
+	
+	
+
+	
+
+<hr/>
+<a href="javascript:location.reload(true)">Limpiar</a>
+
+<div id="accordion2">
+  <div class="card border-primary sm-3" >
+    <div class="card-header" id="headingOne">
+      <h5 class="mb-3">
+		<img onclick="functionactualiza()" src="images/cog-4x.png">
+        <button  class="btn btn-link" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseOne"><p id="configuration" class="font-weight-bold">Fhir Server Connection</p>
+        </button>
+		
+      </h5>
+    </div>
+
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingOne" data-parent="#accordion2">
+      <div class="card-body">
+	
+	  
+	<form>
+  <div class="row">
+    <div class="col">
+     <select class="custom-select my-1 mr-sm-2 form-control-sm" id="inlineFormCustomSelectPref">
+    <option selected>Choose...</option>
+    <option value="http://localhost:9002/r3/">Lab. Bioquímica y Hematología HGUGM</option>
+	<option value="http://localhost:9002/cloudera/">Lab. Micro H12O</option>
+	<option value="http://localhost:9003/cadda/">Lab. Bioquímica y Hematología H12O</option>
+	<option selected="selected" value="https://fhir.loinc.org/">Loinc Fhir Server</option>
+
+
+	
+
+    </div>
+    <div class="col">
+       <input type="text" class="form-control mb-2 mr-sm-2 form-control-sm" id="inlineFormInputName2" placeholder="ValueSet/?url=http://loinc.org/vs/LG32763-1" value="ValueSet/?url=http://loinc.org/vs/LG32763-1">
+    </div>
+  </div>
+</form>
+  
+
+       </div>
+    </div>
+	
+  </div>
+
+
+
+
+
+
+
+</div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="jquery-3.2.1.slim.min.js"></script>
+	<!--<script src="js/jquery.dataTables.min.js"></script> -->
+	<!-- <script src="js/dataTables.rowGroup.min.js"></script> -->
+    <script src="popper.min.js"></script>
+    <script src="bootstrap.min.js"></script>
+ 
+
+
+
+  </body>
+  
+  <script>
+  
+  
+  var calendar;
+   document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      plugins: [ 'interaction', 'dayGrid', 'timeGrid' ],
+      defaultView: 'dayGridMonth',
+      defaultDate: '2019-10-07',
+      header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay'
+      },
+      events: [
+        {
+          title: 'Inhaled steroid therapy',
+          start: '2019-10-01'
+        },
+        {
+          title: 'Diabetic diet',
+          start: '2019-10-07',
+          end: '2019-12-10'
+        },
+        {
+          groupId: 'Asthma self management',
+          title: 'Inhaled steroid therapy',
+          start: '2019-10-09T10:00:00'
+        },
+        {
+          groupId: 'Asthma self management',
+          title: 'Inhaled steroid therapy',
+          start: '2019-10-16T10:00:00'
+        },
+      
+        {
+          groupId: 'Asthma self management',
+          title: 'Inhaled steroid therapy',
+          start: '2019-10-24T10:00:00'
+        },
+		{
+          groupId: 'Asthma self management',
+          title: 'Inhaled steroid therapy',
+          start: '2019-11-09T10:00:00'
+        },
+		{
+          groupId: 'Asthma self management',
+          title: 'Inhaled steroid therapy',
+          start: '2019-11-26T10:00:00'
+        },
+		{
+          groupId: 'Asthma self management',
+          title: 'Inhaled steroid therapy',
+          start: '2019-11-24T10:00:00'
+        }
+      ],
+	   eventColor: '#f3ffb5'
+    });
+	
+	calendar.setOption('locale', 'es');
+    calendar.render();
+  });
+  
+  
+  
+  var bundle;
+  var grupo;
+  var array2=[];
+  var datosmed=[];
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  //var $tablemed = $('#tablemed');
+		var ctx = document.getElementById('myChart').getContext('2d');
+     var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'line',
+    //backgroundColor: "#F5DEB3"
+    // The data for our dataset
+    data: {
+       labels:  [1, 2, 3],
+        datasets: [{
+            label: '6 SIGMA LEVEL',
+			fill: false,
+            borderColor: 'rgb(006,057,113)',
+			backgroundColor:'rgb(006,057,118)',
+			hoverBackgroundColor:'rgb(006,057,118)',
+			lineTension: 0,
+            data: [5,5,-5]
+			 
+	
+        },
+		{
+            label: 'Min',
+            //backgroundColor: 'rgb(255, 255, 000)',
+			fill: false,
+            borderColor: 'rgb(255, 255, 000)',
+            data: [-2,-2,-2]
+			
+	
+        },
+		{
+            label: 'Max',
+            //backgroundColor: 'rgb(255, 255, 000)',
+			fill: false,
+            borderColor: 'rgb(255, 255, 000)',
+            data: [5,5,5]
+			
+	
+        }
+		
+		]
+    },
+
+    // Configuration options go here
+    options: {
+					
+					responsive: true,
+					maintainAspectRatio: true,
+					
+					tooltips: {
+					mode: 'index',
+					intersect: false,
+				},
+				hover: {
+					mode: 'nearest',
+					intersect: true
+				},
+
+					legend: {
+						position: 'top',
+						labels: {
+							usePointStyle: true
+						}
+
+					},
+					scales: {
+					xAxes: [{
+						display: true,
+					
+						scaleLabel: {
+							display: false,
+							fontSize: 12
+							//labelString: 'Month'
+						},
+						gridLines: {
+							display:true
+						},
+						ticks: {
+                            maxTicksLimit: 10
+                        }
+
+
+					}],
+
+					yAxes: [{
+						display: 'auto',
+					
+						scaleLabel: {
+							display: true,
+							fontSize: 12
+							//labelString: 'Value'
+						},
+
+						ticks: {
+							suggestedMin: 20,
+							suggestedMax: -20,
+							stepSize: 2,
+						    maxTicksLimit: 5
+                        
+						}
+					}]}
+
+}
+});
+
+
+//window.onload = function(){graf1.style.display ='none'; }
+
+// recupero datos en array de array.
+
+array2=[[20190714,5.4,5.5,6.2],[20190722,5.1,5.5,6.2],[20190716,5.6,5.5,6.2],[20190716,4.7,5.5,6.2],[20170716,4.9,5.5,6.2],[20190722,5.8,5.5,6.2],[20190722,5.4,5.5,6.2],[20150722,5.9,5.5,6.2],[20190722,5.99,5.5,6.2]];
+
+
+var sortedArray = array2.sort(function(b,a) {
+  if (a[0] == b[0]) {
+    return a[1] - b[1];
+  }
+  return b[0] - a[0];
+});
+
+
+ 		
+datos =[];
+min =[];
+max =[];
+etiqueta=[];
+for(i=0;i<sortedArray.length;i++){
+datos.push(sortedArray[i][1]);
+etiqueta.push(sortedArray[i][0]);
+min.push(sortedArray[i][2]);
+max.push(sortedArray[i][3]);
+}
+
+chart.data.labels=etiqueta;
+chart.data.datasets[0].data = datos;
+//chart.data.datasets[0].label = "NUEVOOOOOO";
+chart.data.datasets[1].data = min;
+chart.data.datasets[2].data = max;
+//chart.data.datasets[0].label = ;
+chart.update();
+chart.update();
+chart.update();
+		
+			
+document.getElementById('OrdenarA').addEventListener('click', function() {
+
+
+//var array2=[["2019-07-14",1.7,-1,5],["2019-07-22",2,-1,5],["2019-07-16",3,-1,2],["2019-07-16",4,-2,2],["2017-07-16",5,-2,2]];
+     var   sortedArray = array2.sort(function(b,a) {
+		if (a[0] == b[0]) {
+			return a[1] - b[1];
+			}
+			return b[0] - a[0];
+		});
+		datos =[];
+		min =[];
+		max =[];
+		etiqueta=[];
+		for(i=0;i<sortedArray.length;i++){
+		datos.push(sortedArray[i][1]);
+		etiqueta.push(sortedArray[i][0]);
+		min.push(sortedArray[i][2]);
+		max.push(sortedArray[i][3]);
+		};
+		chart.data.labels=etiqueta;
+		chart.data.datasets[0].data = datos;
+		//chart.data.datasets[0].label = array2[0];
+		//chart.data.datasets[0].data = datos;
+		//chart.data.datasets[1].data = min;
+		//chart.data.datasets[2].data = max;
+		chart.update();
+});
+document.getElementById('OrdenarD').addEventListener('click', function() {
+//var array2=[["2019-07-14",1.7,-1,5],["2019-07-22",2,-1,5],["2019-07-16",3,-1,2],["2019-07-16",4,-2,2],["2017-07-16",5,-2,2]];
+    var  sortedArray = array2.sort(function(a,b) {
+		if (a[0] == b[0]) {
+			return a[1] - b[1];
+			}
+			return b[0] - a[0];
+		});
+		datos =[];
+		min =[];
+		max =[];
+		etiqueta=[];
+		for(i=0;i<sortedArray.length;i++){
+		datos.push(sortedArray[i][1]);
+		etiqueta.push(sortedArray[i][0]);
+		min.push(sortedArray[i][2]);
+		max.push(sortedArray[i][3]);
+		};
+		chart.data.labels=etiqueta;
+		chart.data.datasets[0].data = datos;
+		//chart.data.datasets[0].label = etiqueta;
+		//chart.data.datasets[0].data = datos;
+		//chart.data.datasets[1].data = min;
+		//chart.data.datasets[2].data = max;
+		chart.update();
+});			
+			
+	document.getElementById('removeDataset').addEventListener('click', function() {
+			chart.data.datasets.pop();
+			chart.update();
+		});		
+			
+			
+document.getElementById('addDataset').addEventListener('click', function() {
+
+		var newDataset = {
+				label: 'Dataset',
+     			backgroundColor: 'rgb(255, 99, 132)',
+	//		borderColor: dsColor,
+	//			borderWidth: 1,
+		        fill: true,
+				data: [12,25,25,4,5,5,5,5,5,5,5,5,5,5,5]
+			};
+
+	//		for (var index = 0; index < barChartData.labels.length; ++index) {
+	//			newDataset.data.push(randomScalingFactor());
+	//		}
+//
+			chart.data.datasets.push(newDataset);
+			//chart.data.labels=[12,25,25,4,5,5,5,5,5,5,5,5,5,225,5,5]
+		 
+			
+			chart.update();
+		});			
+	
+
+ function addmedicamento() {
+
+
+        var x = document.getElementById("medicamento").value;
+     
+
+		var newDataset = {
+				label: x,
+     			backgroundColor: 'rgb(255, 99, 132)',
+	//		borderColor: dsColor,
+	//			borderWidth: 1,
+		        fill: true,
+				data: [12,25,25,4,5,5,5,5,5,5,5,5,5,5,5]
+			};
+
+	//		for (var index = 0; index < barChartData.labels.length; ++index) {
+	//			newDataset.data.push(randomScalingFactor());
+	//		}
+//
+			chart.data.datasets.push(newDataset);
+			//chart.data.labels=[12,25,25,4,5,5,5,5,5,5,5,5,5,225,5,5]
+		 
+			
+			chart.update();
+		};
+			
+
+
+
+
+
+
+
+////////////////////////////////////////////////
+
+function busca(){
+  var datobs= [];
+  var datosmed=[];
+  var datoscui=[];
+//	 $table.bootstrapTable({data: datobs});
+
+//If you want to clear the data but keep the headers:
+
+ //$table.bootstrapTable({data: datobs});
+
+	var clientre = jqFhir({ baseUrl: document.getElementById('inlineFormCustomSelectPref').value,
+							auth: {
+							bearer: 'token',
+							// OR for basic auth
+							user: 'joselandreu',
+							pass: 'Maximo111'},
+							credentials: 'include',
+						   headers: {
+						//	'X-Custom-Header': 'Custom Value',
+						//	'X-Another-Custom': 'Another Value',
+						     'Access-Control-Allow-Origin:*':'*'}
+						}),
+      patientId = document.getElementById('inlineFormInputName2').value;
+	  var careplani=0;
+	  var medicationi=0;
+	  var observationi=0;
+	  var indiceobs=0;
+	  var grupo= [];
+	  var grupomed=[];
+	  var grupocui=[];
+	  var eventos=[];
+	  clientre.read({
+      //id: 'CodeSystem/' + patientId
+	  id: 'ValueSet/?url=http://loinc.org/vs/LG32763-1'
+    }).then(function(pre) {
+	
+
+
+bundle= pre.content.entry;
+
+	 pre.content.entry.forEach(function(re) {
+           
+			 var ry=re.resource.code;
+			 var ro=re.resource.valueQuantity;
+		
+              
+			  if (re.resource.resourceType == "CarePlan"){
+			  temp="{title: 'Long Event',start: '2019-11-30'}";
+			  datoscui.push(re)
+								//if(grupocui.indexOf(re.resource.category.coding.display)=== -1){
+								//var select = document.getElementById("medicamento");
+								//select.options[select.options.length] = new Option(re.resource.code.coding[0].display);
+				  				//}
+								//grupocui.push(re.resource.code.coding[0].display);
+								
+								//{
+								//title: 'Long Event',
+								//start: '2019-10-07',
+								//end: '2019-10-10'
+								//},
+			  //var temp="{title: '"+re.resource.activity[0].detail.code.coding[0].display +"', start: '"+re.resource.period.start+"'}"
+			  eventos.push(temp);
+			   
+			  careplani=careplani+1;
+			    
+			  }
+		if (re.resource.resourceType == "ValueSet" ){
+			  temp="{title: 'Long Event',start: '2019-11-30'}";
+			  datoscui.push(re)
+								if(grupocui.indexOf(re.resource.compose.include.concept)=== -1){
+								//var select = document.getElementById("medicamento");
+								//select.options[select.options.length] = new Option(re.resource.code.coding[0].display);
+				  				//}
+								//grupocui.push(re.resource.code.coding[0].display);
+								
+								//{
+								//title: 'Long Event',
+								//start: '2019-10-07',
+								//end: '2019-10-10'
+								careplani=careplani+1;
+								}
+			  //var temp="{title: '"+re.resource.activity[0].detail.code.coding[0].display +"', start: '"+re.resource.period.start+"'}"
+			  eventos.push(temp);
+			   
+			  //careplani=careplani+1;
+			    
+			  }
+			   if (re.resource.resourceType == "Medication"){
+			  
+			   datosmed.push(re)
+								if(grupomed.indexOf(re.resource.code.coding[0].display)=== -1){
+								var select = document.getElementById("medicamento");
+								select.options[select.options.length] = new Option(re.resource.code.coding[0].display);
+				  
+							}
+							grupomed.push(re.resource.code.coding[0].display);
+				 medicationi=medicationi+1;
+				
+			  }
+			  
+			   if (re.resource.resourceType == "Observation" && re.resource.category[0].coding[0].code=="laboratory"){
+			   observationi=observationi+1;
+			   datobs.push(re);
+				nombre=re.resource.code.coding[0].display;
+			  // console.log(indiceobs);
+					if (datobs[indiceobs].resource.valueQuantity){
+					valor=JSON.stringify(datobs[indiceobs].resource.valueQuantity.value);
+					datobs[indiceobs].resource.valueQuantity.value= valor.substring(0,6)+" "+datobs[indiceobs].resource.valueQuantity.unit
+					}
+					
+					if (datobs[indiceobs].resource.component){
+					
+					
+					
+					texto=JSON.stringify(datobs[indiceobs].resource.component[0].code.text).substring(0,10);
+				   	texto=texto+" "+JSON.stringify(datobs[indiceobs].resource.component[0].valueQuantity.value)+JSON.stringify(datobs[indiceobs].resource.component[0].valueQuantity.unit);
+					texto=texto+" "+JSON.stringify(datobs[indiceobs].resource.component[1].code.text).substring(0,10);
+					texto=texto+" "+JSON.stringify(datobs[indiceobs].resource.component[1].valueQuantity.value)+JSON.stringify(datobs[indiceobs].resource.component[1].valueQuantity.unit);
+					datobs[indiceobs].resource.valueQuantity= [{ "value": ""}];
+					datobs[indiceobs].resource.valueQuantity.value=texto;
+					
+					
+					}
+				
+				fecha=JSON.stringify(datobs[indiceobs].resource.effectiveDateTime);
+				//datobs[indiceobs].resource.effectiveDateTime="("+fecha.substring(1,11)+":"+"22)";
+				datobs[indiceobs].resource.effectiveDateTime=fecha.substring(1,11);
+				//datobs[indiceobs].resource.effectiveDateTime="(1:10),(2:20),(3:30),(4:24),(5:40),(6:65),(7:70),(8:90)",
+				  
+				  // Group by name determinaciones...
+				
+				
+							if(grupo.indexOf(re.resource.code.coding[0].display)=== -1){
+								var select = document.getElementById("determinacion");
+								select.options[select.options.length] = new Option(re.resource.code.coding[0].display+"|"+re.resource.valueQuantity.unit,re.resource.code.coding[0].display+"|"+re.resource.valueQuantity.unit);
+				  
+							}
+							grupo.push(re.resource.code.coding[0].display);
+				            indiceobs=indiceobs+1;	
+				
+				
+			  }
+			   
+            });
+	
+	 $("#careplani").text(careplani);
+	 $("#medicationi").text(medicationi);
+	 $("#observationi").text(observationi);
+	
+	 $tablemed.bootstrapTable({data: datosmed});
+	 $table.bootstrapTable({data: datobs});
+	  $tablecui.bootstrapTable({data: datoscui});
+	  
+	 //temp="{title: 'Long Event',start: '2019-11-30'}";
+	  //eventos.push(temp);
+	  //calendar.events=temp;
+	  //calendar.render();
+	  
+	  // $('#calendar').calendarEl('renderEvent', {
+      //          title: 'Paln de cuidados',
+      //          start: 2019-11-30,
+      //          allDay: true
+      //        });
+			  
+	 //	    $('#calendar').fullCalendar('updateEvent', event);
+	     //calendar.render();
+	});
+	 sel1=document.getElementById('inlineFormCustomSelectPref');
+	 $("#hospiname").text(sel1.options[sel1.selectedIndex].text);
+	 $("#hospiname1").text(sel1.options[sel1.selectedIndex].text);
+}  
+
+function functionactualiza(){
+ 
+ // Set up a client and patient ID to talk to an un-authenticated FHIR server
+ 
+// var client = jqFhir({ baseUrl: 'https://r3.smarthealthit.org/' }),
+//        patientId = '3b0420d8-8d7d-4add-b20b-2c9bbb9e6962';
+
+ var client = jqFhir({ baseUrl: document.getElementById('inlineFormCustomSelectPref').value }),
+      patientId = document.getElementById('inlineFormInputName2').value;
+	  
+
+
+
+
+    client.read({
+      id: 'Patient/' + patientId
+    }).then(function(p) {
+	
+		if (p.content.name){
+			var name = p.content.name[0];
+		} else name="...";
+	  
+      var formatted = name.given +" "+ name.family;
+	  formatted="José Luis Andreu";
+	  var bod = p.content.birthDate;
+	  var gender = p.content.gender;
+	   if (p.content.telecom){
+			var phone = p.content.telecom[0].value;
+		}else {phone="..."};
+
+	   if (p.content.address){
+			var addr = p.content.address[0].line;
+			var pobx = p.content.address[0].state+" "+p.content.address[0].postalCode;
+			
+		} else {addr="..."; pobx="..."}; 
+	//  var addr = p.content.address[0].line;
+	//  var pobx = p.content.address[0].state+" "+p.content.address[0].postalCode;
+	
+	 if (p.content.identifier){
+			var idi = p.content.identifier[0].value;
+		} else idi="..."; 
+	//  var idi = p.content.identifier[0].value;
+
+	  var cipa;
+	  
+	  sel=document.getElementById('inlineFormCustomSelectPref');
+	 
+	  
+	  	if (nombre!="1") {
+		formatted=nombre;
+		}else{formatted=formatted;}
+	  
+	  $("#system_name").text(sel.options[sel.selectedIndex].text);
+      $("#patient_name").text(formatted);
+	  $("#gender").text(gender);
+	  $("#bod").text(bod);
+	  $("#phone").text(phone);
+	  $("#addr").text(addr);
+	  $("#pobx").text(pobx);
+	  $("#idi").text(idi);
+	  
+	
+    });
+}	
+
+function adddeterminacion() {
+
+
+        var x = document.getElementById("determinacion").value.split("|",1)
+		var unit= document.getElementById("determinacion").value.split("|",2);
+		//x contiene ->
+
+	   
+	 
+	    var data=[];
+		var labels=[];
+		var tempo;
+		array2.length=0;
+	    bundle.forEach(function(re) {
+			
+					if(re.resource.resourceType == "Observation" && re.resource.category[0].coding[0].code=="laboratory"){
+						if (re.resource.code.coding[0].display==x){
+	//			
+				        nvlaor=re.resource.valueQuantity.value.split(" ",1);
+						data.push(nvlaor);
+						labels.push(re.resource.effectiveDateTime.replace("-","").replace("-",""));
+						//tempo.push(re.resource.effectiveDateTime.replace("-","").replace("-",""));
+						//tempo.push(nvlaor);
+						//tempo.push(0);
+						//tempo.push(0);
+						tempo=[re.resource.effectiveDateTime.replace("-","").replace("-",""),nvlaor,0,0];
+						array2.push(tempo);
+						}
+					}	
+		
+	   
+				
+	});
+		
+		var  sortedArray = array2.sort(function(b,a) {
+		if (a[0] == b[0]) {
+			return a[1] - b[1];
+			}
+			return b[0] - a[0];
+		});
+		datos =[];
+		min =[];
+		max =[];
+		etiqueta=[];
+		for(i=0;i<sortedArray.length;i++){
+		datos.push(sortedArray[i][1]);
+		etiqueta.push(sortedArray[i][0]);
+		min.push(sortedArray[i][2]);
+		max.push(sortedArray[i][3]);
+		};
+		
+		var newDataset = {
+				label: x,
+     			//backgroundColor: 'rgb(006,057,113)',
+				borderColor: 'rgb(009,057,'+ (Math.floor(Math.random() * (254 - 0)) + 0)+')',
+	//		borderColor: dsColor,
+	//			borderWidth: 1,
+		        fill: false,
+				data: datos
+			};
+
+	//		for (var index = 0; index < barChartData.labels.length; ++index) {
+	//			newDataset.data.push(randomScalingFactor());
+	//		}
+//
+			chart.data.datasets.push(newDataset);
+			chart.data.labels=etiqueta;
+			//chart.data.datasets.label=array2[0]
+			
+			chart.update();
+			
+			
+
+		};
+
+var chartData = {	
+			labels: ['Ampicillin', 'Cefazolin', 'Cefoxitin', 'Clindamycin', 'Daptomycin', 'Doxycycline','Erythromycin','Gentamicin','Levofloxacin','Linezolid','Moxifloxacin','Oxacillin','Penicillin','Quinupristin','Rifampin','Tetracycline','Sulfamethoxazole','Vancomycin'],
+			//xLabels:['','R','I','S'],
+			datasets: [{
+				//type: 'bar',
+				label: 'Organismo Positivo: Staphylococcus aureus ',
+				borderColor: ['red','blue','blue','blue','blue','blue','blue','blue','red','blue','blue','blue','blue','blue','red','blue','blue','blue','blue','blue'],
+				borderWidth: 2,
+				data:[,2,4,0.5,1,0.5,8,2,0.5,4,0.5,0.5,2,0.5,0.5,0.5,0.0526,1]
+			}]};
+var ctx = document.getElementById('antibioChart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'horizontalBar',
+    data: chartData,
+	options:{
+		scales: {
+			yAxes: [{
+						type: 'category'}]
+				}
+            }	
+});
+
+document.getElementById('sensible').addEventListener('click', function() {
+
+var chartData = {	
+			xLabels: ['Ampicillin', 'Cefazolin', 'Cefoxitin', 'Clindamycin', 'Daptomycin', 'Doxycycline','Erythromycin','Gentamicin','Levofloxacin','Linezolid','Moxifloxacin','Oxacillin','Penicillin','Quinupristin','Rifampin','Tetracycline','Sulfamethoxazole','Vancomycin'],
+			yLabels:['Resistente','Intermedio','Sensible',''],
+			datasets: [{
+				label: 'Organismo Positivo: Staphylococcus aureus ',
+				borderColor: ['red','blue','blue','blue','blue','blue','blue','blue','red','blue','blue','blue','blue','blue','red','blue','blue','blue','blue','blue'],
+				borderWidth: 2,
+				data:['Resistente','Sensible','Sensible','Sensible','Sensible','Sensible','Sensible','Sensible','Resistente','Sensible','Sensible','Sensible','Sensible','Sensible','Resistente','Sensible','Sensible','Sensible','Sensible','Sensible']
+			}]};
+
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: chartData,
+	options:{
+		scales: {
+			yAxes: [{
+						type: 'category'}]
+				}
+            }	
+});
+
+
+myChart.update();
+});
+
+
+document.getElementById('valor').addEventListener('click', function() {
+var chartData = {	
+			labels: ['Ampicillin', 'Cefazolin', 'Cefoxitin', 'Clindamycin', 'Daptomycin', 'Doxycycline','Erythromycin','Gentamicin','Levofloxacin','Linezolid','Moxifloxacin','Oxacillin','Penicillin','Quinupristin','Rifampin','Tetracycline','Sulfamethoxazole','Vancomycin'],
+			datasets: [{
+				label: 'Organismo Positivo: Staphylococcus aureus ',
+				borderColor: ['red','blue','blue','blue','blue','blue','blue','blue','red','blue','blue','blue','blue','blue','red','blue','blue','blue','blue','blue'],
+				borderWidth: 2,
+				data:[,2,4,0.5,1,0.5,8,2,0.5,4,0.5,0.5,2,0.5,0.5,0.5,0.0526,1]
+			}]};
+
+var myChart = new Chart(ctx, {
+    type: 'horizontalBar',
+    data: chartData,
+	options:{
+		scales: {
+			yAxes: [{
+						type: 'category'}]
+				}
+            }	
+});
+
+myChart.update();
+});
+
+
+function getGET()
+    {
+        // capturamos la url
+        var loc = document.location.href;
+        // si existe el interrogante
+        if(loc.indexOf('?')>0)
+        {
+            // cogemos la parte de la url que hay despues del interrogante
+            var getString = loc.split('?')[1];
+            // obtenemos un array con cada clave=valor
+            var GET = getString.split('&');
+            var get = {};
+ 
+            // recorremos todo el array de valores
+            for(var i = 0, l = GET.length; i < l; i++){
+                var tmp = GET[i].split('=');
+                get[tmp[0]] = unescape(decodeURI(tmp[1]));
+            }
+            return get;
+        }
+    }
+ 
+ // parametros desde QR
+ // Centro: Ubicacion: Sala: Turno: Nombre: Fecha: Hora:
+ var mensaje="";
+ var nombre="1";
+    window.onload = function()
+    {
+        // Cogemos los valores pasados por get
+        var valores=getGET();
+        if(valores)
+        {
+            // hacemos un bucle para pasar por cada indice del array de valores
+            for(var index in valores)
+            {
+                //console.log("<br>clave: "+index+" - valor: "+valores[index]);
+				if (index=="Turno") {
+				mensaje=mensaje+"<li><ul><h5><strong>"+index+" : "+valores[index]+"</strong></h5></ul></li>"
+				}else{mensaje=mensaje+"<li>"+index+" : "+valores[index]+"</li>";}
+				
+					
+            }
+		document.getElementById("QR").innerHTML = mensaje;
+	    $('#list-tab a:last-child').tab('show');
+	
+		nombre=valores["Nombre"];
+		
+
+        }else{
+            // no se ha recibido ningun parametro por GET
+            //console.log("<br>No se ha recibido ningún parámetro");
+			ruta="images/qr-4x.png"
+			mensaje="<li> Es necesario escanear el código QR <img src="+ruta+"> de su cita desde el quiosco más cercano</li>";
+			document.getElementById("QR").innerHTML = mensaje;
+        }
+    }
+
+  
+</script>
+
+</html>
