@@ -904,11 +904,11 @@ function busca(){
 							pass: 'Maximo111'},
 							credentials: 'include',
 						   headers: {
-						    'Access-Control-Allow-Origin':'*',
-							'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
-						    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE'
+						//   'Access-Control-Allow-Origin':'*',
+						'Header always set Access-Control-Allow-Methods': 'POST, GET, OPTIONS, DELETE, PUT',
+                         'Header always set Access-Control-Allow-Headers': 'append,delete,entries,foreach,get,has,keys,set,values,Authorization'
 						    //'X-Another-Custom': 'Another Value'
-						     }
+						    }
 						}),
 						
 						//Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept"
