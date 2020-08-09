@@ -1,0 +1,25 @@
+
+<html> 
+
+<head> 
+   	<title>Informe!!</title> 
+
+</head>
+<script type="text/javascript" src="js/jspdf.debug.js"></script>
+<body onload="demoTwoPageDocument() "> 
+<script type="text/javascript">
+function demoTwoPageDocument() 
+{
+var doc = new jsPDF();
+//var logo = 'assets/images/logo_cm.gif';
+//doc.addImage(logo,'gif',10,8);
+
+doc.text(20, 20, 'Ejemplo de Informe!');
+doc.text(20, 30, 'Incluir datos de informe.');
+
+
+doc.save('Test.pdf');
+}
+</script>
+</body>
+</html>
